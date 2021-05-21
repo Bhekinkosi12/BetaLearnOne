@@ -1,0 +1,72 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Apis" Version="1.51.0" />
+    <PackageReference Include="Google.Apis.Container.v1" Version="1.51.0.2315" />
+    <PackageReference Include="Google.Apis.Core" Version="1.51.0" />
+    <PackageReference Include="Google.Apis.Gmail.v1" Version="1.51.0.2321" />
+    <PackageReference Include="Google.Apis.Logging.v2" Version="1.51.0.2318" />
+    <PackageReference Include="Google.Apis.YouTube.v3" Version="1.51.0.2294" />
+    <PackageReference Include="LibVLCSharp.Forms" Version="3.5.0" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
+    <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.0-beta" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.Cards" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.Pdf" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRangeSlider" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.1.0.64" />
+    <PackageReference Include="Xamanimation" Version="1.3.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0-pre2" />
+    <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.2.0-pre2" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
+    <PackageReference Include="Xamarin.Forms.OpenWhatsApp" Version="1.0.1" />  
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.763-beta" />  
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2012" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Authentication\LoginStaff.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Authentication\LoginStudent.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Authentication\SigninStudent.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LearnView\LearnPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\ProfileEdit.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\ToolPopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Profile\ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Tools\CalculatorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

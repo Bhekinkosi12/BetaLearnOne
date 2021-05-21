@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:popup="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:anima="clr-namespace:Xamanimation;assembly=Xamanimation"
+             Size="200,350" 
+             HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+              x:Name="Page"
+             
+             
+             x:Class="BetaLearnOne.Views.Popups.ProfileEdit">
+    
+  
+  
+    
+    <Frame Padding="0" BackgroundColor="White">
+
+        <Grid 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="40" />
+                 
+            </Grid.RowDefinitions>
+
+
+
+            <Frame Padding="0" >
+                <Image Source="XUIProfile.png" Aspect="fill" />
+
+
+            </Frame>
+            
+            
+            
+            
+            
+        </Grid>
+        
+        
+        
+    </Frame>
+</popup:Popup>

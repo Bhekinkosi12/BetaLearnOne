@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Shell.NavBarIsVisible="False" Shell.TabBarIsVisible="False" 
+             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             BackgroundColor="White"
+             xmlns:vm="clr-namespace:BetaLearnOne.ViewModels"
+            xmlns:anima="clr-namespace:Xamanimation;assembly=Xamanimation"
+             xmlns:local="clr-namespace:BetaLearnOne.Models"
+             
+             
+             x:Class="BetaLearnOne.Views.LearnView.LearnPage">
+
+    <ContentPage.BindingContext>
+        <vm:LearnViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame" x:Key="SlideFrame" >
+                <Setter Property="BackgroundColor" Value="Gray" />
+            </Style>
+            <anima:ShakeAnimation Delay="10" x:Key="FadeIn" Duration="100"  Target="{x:Reference SlideFrame}" />
+            <anima:FadeOutAnimation Delay="10" x:Key="FadeOut" Duration="100"  Target="{x:Reference SlideFrame}" />
+            
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid Margin="0,6,0,0" >
+          
+            <Grid.Triggers>
+                <EventTrigger Event="Clicked" >
+                    <anima:BeginAnimation Animation="{StaticResource FadeOut}" />
+
+                </EventTrigger>
+            </Grid.Triggers>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+
+          
+
+
+            <Frame Padding="0" BackgroundColor="Transparent" Grid.ColumnSpan="2" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="2" />
+                        <ColumnDefinition Width="50" />
+
+                    </Grid.ColumnDefinitions>
+                    <Frame Padding="0" Grid.Column="1" CornerRadius="30" BackgroundColor="Transparent" BorderColor="Transparent" >
+
+                        <ImageButton BackgroundColor="Transparent" Aspect="AspectFit" x:Name="Tools" Clicked="Tools_Clicked"   Source="UiFavourite.png" >
+                           
+                            <ImageButton.Triggers>
+                                <EventTrigger Event="Clicked" >
+                                    <anima:BeginAnimation Animation="{StaticResource FadeIn}" />
+                                </EventTrigger>
+                          
+                            </ImageButton.Triggers>
+                       
+                        </ImageButton>
+                    </Frame>
+
+                    <BoxView BackgroundColor="Blue" WidthRequest="1" CornerRadius="10" Opacity="0.7"  Grid.Column="2" />
+
+
+                    <Frame Padding="0" Grid.Column="3" CornerRadius="30" BackgroundColor="Transparent" BorderColor="Transparent" >
+
+
+
+                        <ImageButton BackgroundColor="Transparent" Command="{Binding Tools}" Aspect="AspectFit"  Source="XUIdeviation.png" >
+                            <ImageButton.Triggers>
+                                <EventTrigger Event="Clicked" >
+                                    <anima:BeginAnimation Animation="{StaticResource FadeIn}" />
+                                </EventTrigger>
+
+                            </ImageButton.Triggers>
+                        </ImageButton>
+                          
+                    </Frame>
+                    
+                    
+                    
+                    
+                </Grid>
+                
+            </Frame>
+            
+            
+            
+
+
+            <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" Grid.ColumnSpan="2" >
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="60" />
+
+                    </Grid.RowDefinitions>
+                
+
+
+
+                    <progressBar:SfLinearProgressBar  Progress="{Binding Progress}" TrackHeight="40" CornerRadius="40"  />
+
+                    <Label Text="Topic" TextColor="Black" FontAttributes="Bold" BackgroundColor="Transparent" FontSize="23" VerticalOptions="Center" HorizontalOptions="Center" />
+
+
+
+                    
+                    
+                    
+
+
+
+                    <Frame BackgroundColor="Transparent" Grid.Row="1" Padding="0" >
+                        
+
+
+                        <CarouselView BackgroundColor="Transparent" ItemsSource="{Binding LearningTab}" Position="{Binding Position}" IsScrollAnimated="True" IsBounceEnabled="True"  >
+                           
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate >
+                                    <Frame Padding="0" x:DataType="local:Learn" BackgroundColor="Transparent"  Margin="10" CornerRadius="10" BorderColor="LightBlue"  >
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer x:Name="PageFrame" NumberOfTapsRequired="1" Tapped="PageFrame_Tapped" />
+                                        </Frame.GestureRecognizers>
+                                        <Frame.Triggers>
+                                            <EventTrigger Event="Tapped" >
+                                                <anima:BeginAnimation Animation="{StaticResource FadeOut}" />
+                                            </EventTrigger>
+                                        </Frame.Triggers>
+
+                                        <ScrollView Orientation="Vertical">
+                                            
+                                            
+                                        <StackLayout >
+                                            
+                                            
+                                            
+
+                                            <Frame BackgroundColor="Transparent"  Padding="0"  >
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <ScrollView Orientation="Vertical">
+                                                        <StackLayout>
+
+
+                                                                <Label Text="{Binding Topic}" Margin="10" TextColor="#03254c" FontSize="20" />
+
+                                                            <Image Source="" Margin="10" Aspect="AspectFit" />
+                                                                <Label Text="{Binding Body}" Margin="10" TextColor="#03254c" FontSize="20" />
+
+
+                                                        </StackLayout>
+
+                                                    </ScrollView>
+
+                                                </Grid>
+
+                                            </Frame>
+
+
+
+
+
+
+
+                                            <Frame Padding="0" BackgroundColor="Transparent"  >
+
+                                                <Grid>
+                                                    <Grid.RowDefinitions >
+                                                        <RowDefinition Height="6" />
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <BoxView BackgroundColor="#1569c7" Opacity="0.8" HeightRequest="2" Margin="10,0" CornerRadius="10" />
+
+                                                    <ScrollView Grid.Row="1" >
+                                                        <StackLayout Orientation="Vertical" >
+
+
+                                                            <Label IsVisible="False" Text="All the Questions at hand will be displayed in this frame All the lessons and questions will be displayed in this frame All the lessons and questions will be displayed in this frame" Margin="10" TextColor="Black" FontSize="20" />
+
+                                                            <Frame BackgroundColor="Transparent" Padding="0" CornerRadius="10" Margin="10,10,10,5" HeightRequest="50" >
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="50" />
+                                                                        <ColumnDefinition Width="*" />
+
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Frame Padding="0" BackgroundColor="Transparent"  CornerRadius="13">
+                                                                        <Image Aspect="AspectFit" Source="UiRisk.png" />
+
+                                                                    </Frame>
+
+                                                                    <ScrollView Grid.Column="1">
+                                                                        <Label Text="All alerts and conditions will be displayed yeah" FontSize="18" TextColor="Black" BackgroundColor="Transparent" Margin="4" />
+                                                                    </ScrollView>
+
+
+                                                                </Grid>
+
+                                                            </Frame>
+
+                                                        </StackLayout>
+
+                                                    </ScrollView>
+
+                                                </Grid>
+
+
+
+
+                                            </Frame>
+
+
+
+                                        </StackLayout>
+                                        </ScrollView>
+
+
+
+
+
+                                    </Frame>
+
+
+
+
+                                </DataTemplate>
+                                
+                            </CarouselView.ItemTemplate>
+                            
+                            
+                        </CarouselView>
+                        
+
+                    
+                    </Frame>
+                        
+
+
+
+
+
+
+                    <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="2" >
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+
+                            </Grid.ColumnDefinitions>
+                        <button:SfButton Text="Next" WidthRequest="100" Margin="10" FontSize="18" BackgroundColor="Blue" Command="{Binding NextBTN}" HorizontalOptions="End" CornerRadius="10,0" />
+
+                            
+                            <ImageButton Margin="17,0,0,0" VerticalOptions="Center"  Aspect="AspectFit" Source="UIChat.png" BackgroundColor="Transparent" HorizontalOptions="Start" />
+                            
+                        </Grid>
+                        
+
+                    </Frame>
+
+
+
+                </Grid>
+                
+                
+                
+                
+            </Frame>
+
+
+
+            <Frame Padding="0" BackgroundColor="LightGray" HasShadow="True"  IsVisible="False"  x:Name="SlideFrame" CornerRadius="15" Margin="0,0,10,0" Grid.Column="1" VerticalOptions="Center" Grid.RowSpan="2"  >
+                <Frame.Triggers>
+                    <EventTrigger Event="IsVisible">
+                        <anima:BeginAnimation Animation="{StaticResource FadeIn}" />
+                    </EventTrigger>
+                    
+                </Frame.Triggers>
+                <Grid Margin="0,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Frame Padding="0" BackgroundColor="Transparent" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="4" />
+
+                            </Grid.RowDefinitions>
+
+                            <Frame Padding="0" Style="{StaticResource SlideFrame}" BackgroundColor="Transparent"  HorizontalOptions="Center" HeightRequest="50"  >
+
+                                <ImageButton BackgroundColor="Transparent" x:Name="BTNProfile" Command="{Binding Profile}" Clicked="BTNProfile_Clicked" Source="UiSelfies.png" Aspect="AspectFit" />
+                            </Frame>
+                            <BoxView Grid.Row="1" BackgroundColor="Black" HeightRequest="2" CornerRadius="10" />
+
+
+
+                        </Grid>
+                        
+                    </Frame>
+
+                    <StackLayout Grid.Row="1">
+                        
+                        
+                    <Frame Padding="0" BackgroundColor="Transparent"  WidthRequest="50" HorizontalOptions="Center" HeightRequest="50" CornerRadius="60" >
+                            <ImageButton BackgroundColor="Transparent" x:Name="BTNCalculator" Command="{Binding Calculator}"  Clicked="BTNCalculator_Clicked" Source="Uiestimate.png" >
+                                <ImageButton.Triggers>
+                                    <EventTrigger Event="Clicked" >
+                                        <anima:BeginAnimation Animation="{StaticResource FadeOut}" />
+                                       
+                                    </EventTrigger>
+                                                  
+                                </ImageButton.Triggers>
+                            </ImageButton>
+                        </Frame>
+                    <Frame Padding="0" BackgroundColor="Transparent" WidthRequest="50" HorizontalOptions="Center" HeightRequest="50" CornerRadius="60" >
+
+                            <ImageButton BackgroundColor="Transparent" Source="UiStats.png" Aspect="AspectFit" >
+                                <ImageButton.Triggers>
+                                    <EventTrigger Event="Clicked" >
+                                        <anima:BeginAnimation Animation="{StaticResource FadeOut}" />
+
+                                    </EventTrigger>
+
+                                </ImageButton.Triggers>
+                            </ImageButton>
+                        </Frame>
+
+                        <Frame Padding="0" BackgroundColor="Transparent" WidthRequest="50" HorizontalOptions="Center" HeightRequest="50" CornerRadius="60" >
+
+                            <ImageButton BackgroundColor="Transparent" Source="UiSecuredLetter.png" Aspect="AspectFit" >
+                                <ImageButton.Triggers>
+                                    <EventTrigger Event="Clicked" >
+                                        <anima:BeginAnimation Animation="{StaticResource FadeOut}" />
+                                        
+
+                                    </EventTrigger>
+
+                                </ImageButton.Triggers>
+                            </ImageButton>
+                        </Frame>
+                        <Frame Padding="0" BackgroundColor="Transparent" WidthRequest="50" HorizontalOptions="Center" HeightRequest="50" CornerRadius="60" >
+
+                            <ImageButton BackgroundColor="Transparent" Source="UiPlanner.png" Aspect="AspectFit" />
+                        </Frame>
+                    </StackLayout>
+                    
+
+                </Grid>
+                
+                
+            </Frame>
+            
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

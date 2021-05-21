@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             NavigationPage.HasNavigationBar="False"
+              xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             x:Class="BetaLearnOne.Views.Authentication.SigninStudent">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="220" />
+                <RowDefinition Height="*" />
+               
+
+            </Grid.RowDefinitions>
+
+            <Frame Padding="0" BackgroundColor="Transparent" >
+
+                <Image Aspect="AspectFit" Source="LearnBeta.jpg"  />
+
+            </Frame>
+
+
+
+
+            <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
+
+                <Grid RowSpacing="14">
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        
+
+                    </Grid.RowDefinitions>
+
+                    <punny:PancakeView Margin="14,3" >
+
+
+
+                        <Frame Padding="0" BackgroundColor="#e7eff6"  >
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="UiUserName.png" />
+                                <Entry Grid.Column="1" BackgroundColor="Transparent" Text="{Binding Name, Mode=TwoWay}" TextColor="Black" Placeholder="Full name" PlaceholderColor="Gray" />
+
+                            </Grid>
+
+
+                        </Frame>
+                    </punny:PancakeView> <!--Name-->
+
+
+                    <punny:PancakeView Margin="14,3" Grid.Row="1">
+
+
+
+                        <Frame Padding="0" BackgroundColor="#e7eff6"  >
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="UiSelfies.png" />
+                                <Entry Grid.Column="1" Keyboard="Email" BackgroundColor="Transparent" Text="{Binding Email, Mode=TwoWay}" TextColor="Black" Placeholder="Email Adress" PlaceholderColor="Gray" />
+
+                            </Grid>
+
+
+                        </Frame>
+                    </punny:PancakeView> <!--Email-->
+
+
+
+
+                    <punny:PancakeView Margin="14,3" Grid.Row="2">
+                        <Frame Padding="0" BackgroundColor="#e7eff6"  >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                    
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="10" />
+                                </Grid.RowDefinitions>
+
+
+                                <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="UiPrivate.png" />
+                                <Entry Grid.Column="1" BackgroundColor="Transparent" TextColor="Black" Text="{Binding Password, Mode=TwoWay}" Placeholder="Password" IsPassword="True" PlaceholderColor="Gray" />
+
+                                <progressBar:SfLinearProgressBar Grid.Row="1" Grid.ColumnSpan="2" Progress="{Binding PasswordLevelBar}" x:Name="BarLevel" ValueChanged="BarLevel_ValueChanged" >
+                                    
+                                </progressBar:SfLinearProgressBar>
+
+                            </Grid>
+
+
+                        </Frame> 
+                    </punny:PancakeView> <!--Password-->
+                    
+                    
+                    <punny:PancakeView Margin="14,3" Grid.Row="3">
+                        <Frame Padding="0" BackgroundColor="#e7eff6"  >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="5" />
+                                </Grid.RowDefinitions>
+
+
+                                <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="UiPrivate.png" />
+                                <Entry Grid.Column="1" BackgroundColor="Transparent" TextColor="Black" Text="{Binding ConfirmPassword, Mode=TwoWay}" Placeholder="Confirm Password" IsPassword="True" PlaceholderColor="Gray" />
+
+
+                                <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{Binding ConfirmColor}" />
+
+                            </Grid>
+
+
+                        </Frame>
+                    </punny:PancakeView> <!--Confirm Password-->
+
+
+
+                    <punny:PancakeView Margin="30,3" Grid.Row="4" CornerRadius="16,0,0,16" >
+                        <punny:PancakeView.Shadow>
+                            <punny:DropShadow Color="Black" BlurRadius="10" Offset="5,5" />
+                        </punny:PancakeView.Shadow>
+
+                        <Frame Padding="0" BackgroundColor="Blue" BorderColor="Transparent" >
+
+
+                            <Button TextColor="White" x:Name="submit" Clicked="submit_Clicked" Text="Submit" FontSize="23"  HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" FontAttributes="Bold" />
+
+
+
+                        </Frame>
+                    </punny:PancakeView>
+
+
+
+
+                </Grid>
+
+            </Frame>
+
+
+
+            
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

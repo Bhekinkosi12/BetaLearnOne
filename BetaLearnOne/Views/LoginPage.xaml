@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             
+            NavigationPage.HasNavigationBar="False"
+             mc:Ignorable="d"
+             x:Class="BetaLearnOne.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <Grid Margin="0,15,0,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230"/>
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+
+            <Image Aspect="AspectFit" Source="BackLogin.png" />
+
+
+            <StackLayout Grid.Row="1" Margin="0,24,0,0">
+                
+                
+            <punny:PancakeView VerticalOptions="End" HorizontalOptions="Center" BackgroundColor="#b3cde0" HeightRequest="60" CornerRadius="13,0,0,13" Margin="10">
+                
+
+                <Frame Padding="0" BorderColor="Transparent" BackgroundColor="Transparent" >
+                    <Frame.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" x:Name="students" Command="{Binding LoginAsStudent}" Tapped="students_Tapped"  />
+                    </Frame.GestureRecognizers>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="200" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Image Aspect="AspectFit" Margin="5" Source="UiUserName.png" />
+                        <Label Text="Login as Student" Margin="10,0,0,0" VerticalOptions="Center" TextColor="Black" FontSize="25" Grid.Column="1" />
+
+
+
+                    </Grid>
+                    
+                    
+                </Frame>
+                
+                
+                
+            </punny:PancakeView>
+
+
+                <punny:PancakeView VerticalOptions="End" HorizontalOptions="Center" HeightRequest="60" BackgroundColor="#b3cde0" CornerRadius="13,0,0,13" Margin="10">
+
+                <Frame Padding="0" BorderColor="Transparent" BackgroundColor="Transparent" >
+                    <Frame.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" x:Name="Staff" Command="{Binding LoginAsStaff}" Tapped="Staff_Tapped"  />
+                    </Frame.GestureRecognizers>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="200" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Image Aspect="AspectFit" Margin="5" Source="UiCollige.png" />
+                            <Label Text="Login as Staff" Margin="10,0,0,0" VerticalOptions="Center" TextColor="Black" FontSize="25" Grid.Column="1" />
+
+
+
+                    </Grid>
+
+
+                </Frame>
+
+
+
+            </punny:PancakeView>
+            </StackLayout>
+
+
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

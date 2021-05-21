@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:viewmodels="clr-namespace:BetaLearnOne.ViewModels"
+             Shell.NavBarIsVisible="False" Shell.TabBarIsVisible="False"
+             x:Class="BetaLearnOne.Views.Tools.CalculatorPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:CalculatorVIewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary >
+            <Style TargetType="Button" x:Key="ButtonStyle" >
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="30" />
+
+            </Style>
+            <Style TargetType="Button" x:Key="OperatorsStyle" >
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="FontSize" Value="20" />
+
+            </Style>
+            
+            
+        </ResourceDictionary>
+        
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160" />
+                <RowDefinition Height="*" />
+
+
+            </Grid.RowDefinitions>
+
+            <Frame BackgroundColor="Transparent" Padding="0" >
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{Binding Number}" TextColor="Black" Margin="15,5"  FontSize="40" />
+                    <Label Text="{Binding Answer}" TextColor="Black" Margin="15,0" HorizontalOptions="EndAndExpand" FontSize="30" Grid.Row="1" />
+
+
+                </Grid>
+                
+                
+            </Frame>
+
+
+
+
+            <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="30" />
+
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <Frame Padding="0" BackgroundColor="#202020" >
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                               
+
+                            </Grid.ColumnDefinitions>
+
+                            <Button BackgroundColor="Transparent" Command="{Binding Seven}" x:Name="seven" Style="{StaticResource ButtonStyle}" Text="7" />
+                            <Button BackgroundColor="Transparent" Command="{Binding Eight}" x:Name="eight" Grid.Column="1" Style="{StaticResource ButtonStyle}" Text="8" />
+                            <Button BackgroundColor="Transparent" Command="{Binding Nine}" x:Name="nine" Grid.Column="2" Style="{StaticResource ButtonStyle}" Text="9" />
+                            
+                            
+
+                            <Button BackgroundColor="Transparent" Command="{Binding Four}" x:Name="four" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonStyle}" Text="4" />
+
+                            <Button BackgroundColor="Transparent" Command="{Binding Five}" x:Name="five" Grid.Column="1" Grid.Row="1" Style="{StaticResource ButtonStyle}" Text="5" />
+
+                            <Button BackgroundColor="Transparent" Command="{Binding Six}" x:Name="six" Grid.Column="2" Grid.Row="1" Style="{StaticResource ButtonStyle}" Text="6" />
+
+
+                            <Button BackgroundColor="Transparent" Command="{Binding One}" x:Name="one" Grid.Column="0" Grid.Row="2" Style="{StaticResource ButtonStyle}" Text="1" />
+
+                            <Button BackgroundColor="Transparent" Command="{Binding Two}" x:Name="two" Grid.Column="1" Grid.Row="2" Style="{StaticResource ButtonStyle}" Text="2" />
+
+                            <Button BackgroundColor="Transparent" Command="{Binding Three}" x:Name="three" Grid.Column="2" Grid.Row="2" Style="{StaticResource ButtonStyle}" Text="3" />
+
+
+
+
+
+                            <Button BackgroundColor="Transparent" Command="{Binding Dot}" x:Name="dot" Grid.Column="0" Grid.Row="3" Style="{StaticResource ButtonStyle}" Text="." />
+
+                            <Button BackgroundColor="Transparent"  x:Name="zero" Grid.Column="1" Grid.Row="3" Style="{StaticResource ButtonStyle}" Text="0" />
+
+                            <Button BackgroundColor="Transparent" Command="{Binding Equal}" x:Name="equal" Grid.Column="2" Grid.Row="3" Style="{StaticResource ButtonStyle}" Text="=" />
+
+
+
+
+                        </Grid>
+                        
+                        
+                        
+                        
+                    </Frame>
+
+
+
+                    <Frame Padding="0" BackgroundColor="#303030" Grid.Column="1" >
+
+                        <StackLayout Orientation="Vertical" Spacing="10">
+                            <Button BackgroundColor="Transparent" Command="{Binding Clear}" Style="{StaticResource OperatorsStyle}" Text="CLR" />
+                            <Button BackgroundColor="Transparent" Command="{Binding Divide}" Style="{StaticResource OperatorsStyle}" Text="/" />
+                            <Button BackgroundColor="Transparent" Command="{Binding Multiply}" Style="{StaticResource OperatorsStyle}" Text="X" />
+                            <Button BackgroundColor="Transparent" Command="{Binding Minus}" Style="{StaticResource OperatorsStyle}" Text="-" />
+                            <Button BackgroundColor="Transparent" Command="{Binding Plus}" Style="{StaticResource OperatorsStyle}" Text="+" />
+
+
+
+                        </StackLayout>
+                        
+                        
+                        
+                        
+                    </Frame>
+
+                    <Frame Padding="0" Grid.Column="2" BackgroundColor="Blue" >
+                        
+                        
+                    </Frame>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </Grid>
+                    
+                
+                
+
+
+            </Frame>
+            
+            
+            
+            
+            
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using BetaLearnOne.ViewModels.AuthenticationVM;
-
+using Xamarin.CommunityToolkit.Extensions;
+using BetaLearnOne.Views.Popups.Logging;
 
 namespace BetaLearnOne.Views.Authentication
 {
@@ -18,24 +19,19 @@ namespace BetaLearnOne.Views.Authentication
         {
             InitializeComponent();
         }
-        StudentViewModel studentViewModel = new StudentViewModel();
+       
 
 
-        private async void ForgotPassword_Clicked(object sender, EventArgs e)
+        private  void ForgotPassword_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SigninStudent());
+            Shell.Current.ShowPopup(new ForgotPasswordPage());
+
+        //    await Navigation.PushAsync(new SigninStudent());
         }
 
-        private async void login_Clicked(object sender, EventArgs e)
+        private void login_Clicked(object sender, EventArgs e)
         {
-            if(studentViewModel.Verified() == true)
-            {
-                await Navigation.PushAsync(new AppShell());
-            }
-            else
-            {
-                await DisplayAlert("Error", "Please check your inputs", "OK");
-            }
+         
         }
     }
 }

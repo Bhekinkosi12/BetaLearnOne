@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popup:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="Transparent" 
+             Size="400,400" Color="Transparent"
+             xmlns:popup="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="BetaLearnOne.Views.Popups.CalendarPop.SetDatePopup">
+
+    <Frame Padding="0" BackgroundColor="White" CornerRadius="15" >
+
+        <StackLayout Orientation="Vertical" >
+
+            <Frame BackgroundColor="Transparent" Padding="0" Margin="10" >
+
+                <Editor Placeholder="Subject" PlaceholderColor="Gray" />
+                
+                
+                
+
+            </Frame>
+            <Frame Padding="0" BackgroundColor="Transparent" Margin="5" >
+
+                <DatePicker HorizontalOptions="Center" VerticalOptions="Center" />
+
+            </Frame>
+
+        </StackLayout>
+        
+        
+    </Frame>
+    
+    
+    
+</popup:Popup>

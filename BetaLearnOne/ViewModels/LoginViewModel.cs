@@ -23,10 +23,17 @@ namespace BetaLearnOne.ViewModels
             LoginCommand = new Command(OnLoginClicked);
 
             LoginAsStaff = new Command(OnLoginAsStaff);
-            LoginAsStudent = new Command(OnLoginAsStudent); 
+            LoginAsStudent = new Command(OnLoginAsStudent);
+            SignIn = new Command(OnSignIn);
 
         }
 
+        private async void OnSignIn()
+        {
+            await Shell.Current.GoToAsync(nameof(SigninStudent));
+            
+        }
+        
 
         private async void OnLoginAsStudent()
         {

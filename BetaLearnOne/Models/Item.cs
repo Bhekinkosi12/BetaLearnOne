@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BetaLearnOne.Models.ExamModel;
 
 namespace BetaLearnOne.Models
 {
@@ -11,6 +12,7 @@ namespace BetaLearnOne.Models
         public string SubImage { get; set; }
         public int SubjectProgress { get; set; }
         public string SubBackground { get; set; }
-        public List<Topic> List { get; set; }
+        public string Document { get; set; }
+        public List<Paper> List { get; set; }
     }
 }

@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using BetaLearnOne.Views.LearnView;
 using BetaLearnOne.Views.Tools;
 using BetaLearnOne.Services;
+using BetaLearnOne.Models.ExamModel;
+using BetaLearnOne.Views.ExamView;
+using BetaLearnOne.ViewModels.ExamVM;
 
 
 namespace BetaLearnOne.ViewModels
@@ -21,10 +24,10 @@ namespace BetaLearnOne.ViewModels
         private string description;
         private string subImage;
         private string intro;
-        private Topic currentItem;
+        private Paper currentItem;
         private string backgroundImage;
-        private ObservableCollection<Topic> listTopics;
-        private ObservableCollection<Learn> learnList;
+        private ObservableCollection<Paper> listTopics;
+        
         private List<Learn> learningData;
         LearnViewModel learnViewModel = new LearnViewModel();
         TopicsDataStore topicsDataStore = new TopicsDataStore();
@@ -44,15 +47,7 @@ namespace BetaLearnOne.ViewModels
 
 
 
-        public string BackgroundImage
-        {
-            get => backgroundImage;
-            set
-            {
-                SetProperty(ref backgroundImage, value);
-                OnPropertyChanged(nameof(BackgroundImage));
-            }
-        }
+    
 
         public string Intro
         {
@@ -63,17 +58,9 @@ namespace BetaLearnOne.ViewModels
                 OnPropertyChanged(nameof(Intro));
             }
         }
-        public string ProName
-        {
-            get => proName;
-            set
-            {
-                SetProperty(ref proName, value);
-                OnPropertyChanged(nameof(ProName));
-            }
-        }
+   
 
-        public Topic CurrentItem
+        public Paper CurrentItem
         {
             get => currentItem;
             set
@@ -87,17 +74,9 @@ namespace BetaLearnOne.ViewModels
 
 
      
-        public List<Topic> ListTopicsHO
-        {
-            get => listTopicsHO;
-            set
-            {
-                SetProperty(ref listTopicsHO, value);
-                OnPropertyChanged(nameof(ListTopicsHO));
-            }
-        }
+       
 
-        public ObservableCollection<Topic> ListTopics
+        public ObservableCollection<Paper> ListTopics
         {
             get => listTopics;
             set
@@ -106,15 +85,7 @@ namespace BetaLearnOne.ViewModels
                 OnPropertyChanged(nameof(ListTopics));
             }
         }
-        public string SubImage
-        {
-            get => subImage;
-            set
-            {
-                SetProperty(ref subImage, value);
-                OnPropertyChanged(nameof(SubImage));
-            }
-        }
+    
 
         public string Text
         {
@@ -154,34 +125,20 @@ namespace BetaLearnOne.ViewModels
         }
 
 
-        public ObservableCollection<Learn> LearnList
-        {
-            get => learnList;
-            set
-            {
-                SetProperty(ref learnList, value);
-                OnPropertyChanged(nameof(LearnList));
-            }
-        }
+     
         
 
         public async void LoadItemId(string itemId)
         {
             try
             {
-                ObservableCollection<Topic> collect = new ObservableCollection<Topic>();
+                ObservableCollection<Paper> collect = new ObservableCollection<Paper>();
                 
-
+                 
                 var item = await DataStore.GetItemAsync(itemId);
                 Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
-                ListTopicsHO = item.List;
-                SubImage = item.SubImage;
-                BackgroundImage = item.SubBackground;
                 
-
-              
+            
 
                 foreach(var i in item.List)
                 {
@@ -200,11 +157,11 @@ namespace BetaLearnOne.ViewModels
             }
         }
 
-        void OnSelecetedItem(Topic item)
+        void OnSelecetedItem(Paper item)
         {
 
 
-            var itemm = topicsDataStore.GetIdByItem(item);
+          //  var itemm = topicsDataStore.GetIdByItem(item);
 
 
 
@@ -215,31 +172,15 @@ namespace BetaLearnOne.ViewModels
         async void OnClick()
         {
 
-            int count = 0;
+          
 
             try
             {
 
-                ObservableCollection<Learn> collect = new ObservableCollection<Learn>();
-                foreach (var i in CurrentItem.TopicData)
-                {
-                    collect.Add(i);
-                    count += 1;
-                }
-                
-                LearnList = collect;
-                LearningData = CurrentItem.TopicData;
-
-
-             
-
-                
-
-
 
                // await Shell.Current.GoToAsync($"{nameof(LearnPage)}");
                 
-                 await Shell.Current.GoToAsync($"{nameof(LearnPage)}?{nameof(LearnViewModel.ItemType)}={CurrentItem.TopicDataType}");
+                 await Shell.Current.GoToAsync($"{nameof(ExamPage)}?{nameof(ExamViewModel.ItemId)}={CurrentItem.ID}");
             }
             catch(Exception ex)
             {

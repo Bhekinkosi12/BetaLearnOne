@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using SQLite;
 using System.IO;
+using BetaLearnOne.Views.LearnView;
+using BetaLearnOne.ViewModels.DocumentVM;
 
 namespace BetaLearnOne.ViewModels
 {
@@ -104,7 +106,8 @@ namespace BetaLearnOne.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            //  await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            await Shell.Current.GoToAsync($"{nameof(PDFLearningPage)}?{nameof(DocumentViewModel.ItemId)}={item.Id}");
         }
     }
 }

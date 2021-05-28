@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using BetaLearnOne.Services;
-using BetaLearnOne.Views.LearnView;
+using BetaLearnOne.Views.Profile;
 
 namespace BetaLearnOne.ViewModels.AuthenticationVM
 {
@@ -93,7 +93,7 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
 
             if (condition == true)
             {
-                await Shell.Current.GoToAsync($"//{nameof(LearnPage)}");
+                await Shell.Current.GoToAsync($"//{nameof(ProfilePage)}");
             }
             else
             {

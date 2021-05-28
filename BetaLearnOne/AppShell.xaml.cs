@@ -8,6 +8,9 @@ using BetaLearnOne.Views.Authentication;
 using BetaLearnOne.Views.LearnView;
 using BetaLearnOne.Views.Profile;
 using BetaLearnOne.Views.Popups;
+using BetaLearnOne.Views.Projects;
+using BetaLearnOne.Views.Popups.CalendarPop;
+using BetaLearnOne.Views.ExamView;
 
 namespace BetaLearnOne
 {
@@ -27,6 +30,13 @@ namespace BetaLearnOne
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(ToolPopup), typeof(ToolPopup));
             Routing.RegisterRoute(nameof(ProfileEdit), typeof(ProfileEdit));
+            Routing.RegisterRoute(nameof(MainProjectPage), typeof(MainProjectPage));
+            Routing.RegisterRoute(nameof(ProjectItemPage), typeof(ProjectItemPage));
+            Routing.RegisterRoute(nameof(PDFLearningPage), typeof(PDFLearningPage));
+            Routing.RegisterRoute(nameof(SetDatePopup), typeof(SetDatePopup));
+            Routing.RegisterRoute(nameof(CalenderPage), typeof(CalenderPage));
+            Routing.RegisterRoute(nameof(ExamPage), typeof(ExamPage));
+
         }
 
     }

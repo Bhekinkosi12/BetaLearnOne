@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:pdf="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms" xmlns:examvm="clr-namespace:BetaLearnOne.ViewModels.ExamVM"
+             x:Class="BetaLearnOne.Views.ExamView.ExamPage">
+    <ContentPage.BindingContext>
+        <examvm:ExamViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+
+
+
+
+            <Frame BackgroundColor="Transparent" Padding="0" Grid.Row="0" Grid.RowSpan="2" >
+
+                <Grid>
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    
+                    
+                <pdf:SfPdfViewer x:Name="pdfViewerControl" EnableDoubleTapZooming="True"  InputFileStream="{Binding Question}" >
+
+
+
+                </pdf:SfPdfViewer>
+
+
+
+                    <pdf:SfPdfViewer x:Name="pdfViewerControl" EnableDoubleTapZooming="True" IsVisible="False" InputFileStream="{Binding Answer}" >
+
+
+
+                    </pdf:SfPdfViewer>
+                </Grid>
+                
+
+
+
+            </Frame>
+
+            <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="150" />
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <Frame Padding="0" BackgroundColor="Blue" x:Name="FrameFly" IsVisible="False" CornerRadius="15" Margin="10,0,0,15">
+
+                        <ScrollView Orientation="Horizontal" Margin="14,0,0,0"  >
+
+                            <StackLayout Orientation="Horizontal" Spacing="15" >
+                                <ImageButton BackgroundColor="Transparent" Source="Uiestimate.png" Aspect="AspectFit" />
+                                <ImageButton BackgroundColor="Transparent" Source="UIChat" Aspect="AspectFit" />
+                                <ImageButton BackgroundColor="Transparent" Source="UiSecuredLetter.png" Aspect="AspectFit" />
+
+
+                            </StackLayout>
+
+
+                        </ScrollView>
+
+                    </Frame>
+
+
+
+                    <Frame BackgroundColor="Blue" Padding="0" CornerRadius="60" Grid.Column="1" WidthRequest="50" HeightRequest="60" Margin="0,0,40,15" >
+                        <Button Text="+" x:Name="ToolBTN" Clicked="ToolBTN_Clicked" BackgroundColor="Transparent" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
+
+                    </Frame>
+
+
+                </Grid>
+
+            </Frame>
+
+
+
+
+
+
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

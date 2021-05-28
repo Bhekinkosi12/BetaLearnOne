@@ -4,7 +4,7 @@
              x:Class="BetaLearnOne.Views.ItemDetailPage"
              Shell.NavBarIsVisible="False" Shell.TabBarIsVisible="False"
              xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-             xmlns:model="clr-namespace:BetaLearnOne.Models"
+             xmlns:model="clr-namespace:BetaLearnOne.Models.ExamModel"
              xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              
               xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
@@ -122,11 +122,7 @@
 
 
 
-        <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
-
-            <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="{Binding BackgroundImage}" />
-
-        </Frame>
+      
 
 
 
@@ -138,7 +134,9 @@
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         
-                        <Frame Padding="0"   BackgroundColor="Transparent" x:DataType="model:Topic" BorderColor="Transparent" >
+                        <Frame Padding="0"   BackgroundColor="Transparent" x:DataType="model:Paper" BorderColor="Transparent" >
+                            
+                            
                             <Grid  HeightRequest="120" x:DataType="model:Topic" >
                                 <Grid.RowDefinitions >
                                 <RowDefinition Height="50" />
@@ -159,7 +157,7 @@
 
 
                                     <BoxView BackgroundColor="White" Opacity="0.6" />
-                                    <Label Text="{Binding TopicName}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="26" />
+                                    <Label Text="{Binding PaperName}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="26" />
 
                                 </Grid>
                             </Frame>
@@ -177,9 +175,9 @@
 
 
                                     <punny:PancakeView Margin="13,27,13,5" CornerRadius="18,18,18,0" BackgroundColor="#b3cde0"  >
-                                        
-                                        
-                                        <Label Text="{Binding TopicIntro}" Margin="10"  TextColor="Black" FontSize="19"   />
+
+
+                                        <Label Text="{Binding PaperName}" Margin="10"  TextColor="Black" FontSize="19"   />
                                    
                                     </punny:PancakeView>
 
@@ -190,26 +188,7 @@
                                  </Frame>
                                 
                                 
-                                <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="2" >
-
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-
-                                    <BoxView BackgroundColor="Transparent" />
-
-                                    <progressBar:SfLinearProgressBar TrackHeight="20" CornerRadius="40" Progress="{Binding TopicProgress}" Margin="10,0">
-
-
-                                    </progressBar:SfLinearProgressBar>
-                                   
-
-                                       
-                                    
-                                    </Grid>
-
-                                </Frame>
+                               
 
                            
                                  
@@ -246,7 +225,7 @@
             
             
             
-            <button:SfButton BackgroundColor="Blue" TextColor="White" Command="{Binding Click}" Text="Start Learning" FontSize="20" FontAttributes="Bold" CornerRadius="17,17,0,0">
+            <button:SfButton BackgroundColor="Blue" TextColor="White" Command="{Binding Click}" Text="Select" FontSize="20" FontAttributes="Bold" CornerRadius="17,17,0,0">
                 
                 
             </button:SfButton>

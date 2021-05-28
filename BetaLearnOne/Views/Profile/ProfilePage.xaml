@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Shell.NavBarIsVisible="False"
+               Shell.NavBarIsVisible="False"
              xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                 xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
              xmlns:avant="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms" xmlns:viewmodels="clr-namespace:BetaLearnOne.ViewModels.ProfileVM"
@@ -9,42 +9,42 @@
     <ContentPage.BindingContext>
         <viewmodels:ProfileViewModel />
     </ContentPage.BindingContext>
-    
-    
+
+
     <ContentPage.Content>
         <ScrollView >
-            
-       
-        <StackLayout>
-            <Frame Padding="0" BackgroundColor="Transparent" HorizontalOptions="Center" Margin="15,15,0,0" >
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="37" />
-                    </Grid.RowDefinitions>
-
-                    <Frame Padding="10" BackgroundColor="Transparent" HeightRequest="100" Margin="5,5,5,0" CornerRadius="120" >
-
-                        <avant:SfAvatarView  AvatarShape="Circle" ImageSource="XUIProfile.png" BorderColor="Transparent" >
-                            
-                            
-                        <ImageButton BackgroundColor="Transparent" Source="XUIProfile.png" Aspect="AspectFit" />
-                            
-                        </avant:SfAvatarView>
-                      
-                    </Frame>
 
 
+            <StackLayout>
+                <Frame Padding="0" BackgroundColor="Transparent" HorizontalOptions="Center" Margin="15,15,0,0" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="140" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="37" />
+                        </Grid.RowDefinitions>
 
-                        
-                            
-                    <Frame Padding="0"  BackgroundColor="Transparent" HeightRequest="80" Grid.Column="1"   >
+                        <Frame Padding="10" BackgroundColor="Transparent" HeightRequest="100" Margin="5,5,5,0" CornerRadius="120" >
 
-                            <punny:PancakeView Margin="0,27" HeightRequest="80" BackgroundColor="#1569c7" Padding="0" CornerRadius="35,0,35,0">
+                            <avant:SfAvatarView  AvatarShape="Circle" ImageSource="XUIProfile.png" BorderColor="Transparent" >
+
+
+                                <ImageButton BackgroundColor="Transparent" Source="XUIProfile.png" Aspect="AspectFit" />
+
+                            </avant:SfAvatarView>
+
+                        </Frame>
+
+
+
+
+
+                        <Frame Padding="0"  BackgroundColor="Transparent" HeightRequest="80" Grid.Column="1"   >
+
+                            <punny:PancakeView Margin="0,27" HeightRequest="80" BackgroundColor="Blue" Padding="0" CornerRadius="35,0,35,0">
 
                                 <StackLayout Orientation="Horizontal" Margin="40,10,0,0" Spacing="30" >
 
@@ -75,20 +75,20 @@
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>
-                                        
+
 
                                     </Grid>
-                                    
-                                    
+
+
                                 </StackLayout>
-                                    
-                                    
-                                    
-                                </punny:PancakeView>
 
 
-                    
-                    </Frame>
+
+                            </punny:PancakeView>
+
+
+
+                        </Frame>
 
                         <Frame Grid.Row="2" BackgroundColor="Transparent" Grid.ColumnSpan="2" Padding="0" >
                             <Grid>
@@ -100,72 +100,73 @@
                                 <Label  VerticalOptions="Start"  Text="{Binding UserName}" FontSize="24" FontAttributes="Bold" TextColor="Black" />
 
 
-                                <Button  Text="Edit" Padding="0" Command="{Binding Edit}"  Grid.Column="1" HeightRequest="20" BackgroundColor="#1569c7" Margin="0,0,13,0" CornerRadius="60"  FontSize="15" TextColor="White" />
-                                
+                                <Button  Text="Edit" Padding="0" Command="{Binding Edit}"  Grid.Column="1" HeightRequest="20" BackgroundColor="Blue" Margin="0,0,13,0" CornerRadius="60"  FontSize="15" TextColor="White" />
+
 
 
                             </Grid>
-                            
-                            
+
+
                         </Frame>
 
 
-                </Grid>
-                
-                
-                
-                
-            </Frame>
+                    </Grid>
 
 
 
-            <Frame Padding="0" BackgroundColor="Transparent" Margin="15,0,15,0"  >
-                <Grid >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
 
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70" />
-                       
-                    </Grid.RowDefinitions>
-
-                    <ScrollView >
-                        
-                    <Label Text="{Binding Bio}" TextColor="DimGray" FontSize="18" FontAttributes="Bold" MaxLines="5" />
-                    </ScrollView>
-                    
-                    
-                   
-
-                </Grid>
-                
-                
-            </Frame>
-
-            <Frame Padding="0" BackgroundColor="Transparent" Margin="15,0">
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30" />
-                        <RowDefinition Height="20" />
-                        <RowDefinition Height="4" />
-                    </Grid.RowDefinitions>
-                    <Label Text="Profile Strenght" TextColor="Black" FontSize="19" FontAttributes="Bold" />
-
-                    <progressBar:SfLinearProgressBar Progress="{Binding ProfileStrenght}" Grid.Row="1" ProgressColor="Green">
-                        
-                        
-                    </progressBar:SfLinearProgressBar>
-                    <BoxView BackgroundColor="WhiteSmoke" HeightRequest="2" Grid.Row="2" />
+                </Frame>
 
 
 
-                </Grid>
-                
-            </Frame> <!-- Profile Strenght -->
+                <Frame Padding="0" BackgroundColor="Transparent" Margin="15,0,15,0"  >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="40" />
 
-            <!--
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+
+                        </Grid.RowDefinitions>
+
+                        <ScrollView >
+
+                            <Label Text="{Binding Bio}" TextColor="DimGray" FontSize="18" FontAttributes="Bold" MaxLines="5" />
+                        </ScrollView>
+
+
+
+
+                    </Grid>
+
+
+                </Frame>
+
+                <Frame Padding="0" BackgroundColor="Transparent" Margin="15,0">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="4" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Profile Strenght" TextColor="Black" FontSize="19" FontAttributes="Bold" />
+
+                        <progressBar:SfLinearProgressBar Progress="{Binding ProfileStrenght}" Grid.Row="1" ProgressColor="Blue">
+
+
+                        </progressBar:SfLinearProgressBar>
+                        <BoxView BackgroundColor="WhiteSmoke" HeightRequest="2" Grid.Row="2" />
+
+
+
+                    </Grid>
+
+                </Frame>
+                <!-- Profile Strenght -->
+
+                <!--
             <Frame Padding="0" BackgroundColor="Transparent" Margin="15,0" >
                 <Grid >
                     <Grid.RowDefinitions>
@@ -283,12 +284,16 @@
 
 
                                 </Grid>
-                                
+
                             </Frame>
 
                             <Frame Padding="0" BackgroundColor="WhiteSmoke" BorderColor="#1569c7" Margin="10" WidthRequest="140" CornerRadius="20">
+                                
 
                                 <Grid >
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Projects}" />
+                                    </Grid.GestureRecognizers>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="30" />
                                         <RowDefinition Height="80" />
@@ -296,7 +301,7 @@
 
                                     <Label Text="Projects" FontSize="20" TextColor="#1569c7" HorizontalOptions="Center" VerticalOptions="End" FontAttributes="Bold" />
 
-                                    <ImageButton BackgroundColor="Transparent" Grid.Row="1" Source="XUIProjects.png" />
+                                    <ImageButton BackgroundColor="Transparent" Grid.Row="1" Command="{Binding Projects}" Source="XUIProjects.png" />
 
 
                                 </Grid>
@@ -323,12 +328,13 @@
 
 
                         </StackLayout>
-                        
-                        
+
+
                     </ScrollView>
-                    
-                    
-                </Frame><!-- Slide promo-->
+
+
+                </Frame>
+                <!-- Slide promo-->
 
 
 

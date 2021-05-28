@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BetaLearnOne.Services.ExamDataStore;
+
 
 namespace BetaLearnOne.Services
 {
@@ -11,6 +13,8 @@ namespace BetaLearnOne.Services
         readonly List<Item> items;
 
         TopicsDataStore dataStore = new TopicsDataStore();
+
+        ExamData examData = new ExamData();
         
 
         
@@ -19,12 +23,13 @@ namespace BetaLearnOne.Services
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Math.png", Description="Mathematics", List = dataStore.MathTopics, SubBackground = "mathTwo.png" , SubjectProgress = 40 },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Physics.png", Description="Phyisical Sciences", SubBackground = "LearnPH1.jpg" ,SubjectProgress = 14, List = dataStore.PhysicsTopic },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Computer.png", Description="Application Technology",SubjectProgress = 80 , },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Languages.png", Description="Languages",SubjectProgress = 0 },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Math.png", Description="Mathematics" , Document = "MathMTG.pdf" ,SubBackground = "mathTwo.png" , SubjectProgress = 40, List = examData.MathExamPapers },
+                   new Item { Id = Guid.NewGuid().ToString(), Text = "Math.png", Description="Mathematics Lite", Document = "MathLite.pdf" ,SubBackground = "mathTwo.png" , SubjectProgress = 10 },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Physics.png", Description="Phyisical Sciences", SubBackground = "LearnPH1.jpg" ,SubjectProgress = 14,Document = "PhysicalSciencesG12.pdf" },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "life_science.png", Description="Life Sciences", SubjectProgress = 10,Document = "LifeSciences2017.pdf" },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Computer.png", Description="Application Technology",SubjectProgress = 80 ,Document = "Computer.pdf" },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Languages.png", Description="Languages",SubjectProgress = 0, Document = "AfikaansTaal.pdf" },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "LO.png", Description="Life Orientaions",SubjectProgress = 40 },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "life_science.png", Description="Life Sciences", SubjectProgress = 10 }
             };
         }
 

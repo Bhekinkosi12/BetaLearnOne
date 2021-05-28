@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Shell.NavBarIsVisible="False"
+             xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:calender="clr-namespace:Syncfusion.SfCalendar.XForms;assembly=Syncfusion.SfCalendar.XForms" xmlns:calendarvm="clr-namespace:BetaLearnOne.ViewModels.CalenderVM"
+             x:Class="BetaLearnOne.Views.Tools.CalenderPage">
+    <ContentPage.BindingContext>
+        <calendarvm:CalendarViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+      
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+
+            <Frame Padding="0" BackgroundColor="Transparent" Margin="5" >
+                <ScrollView Orientation="Horizontal" >
+                    <StackLayout Orientation="Horizontal" Spacing="10" >
+                        <Button Text="Month View" BackgroundColor="Blue" Clicked="monthView_Clicked" CornerRadius="20" x:Name="monthView" />
+
+                        <Button Text="Year View" BackgroundColor="#2193b0" Clicked="yearView_Clicked" CornerRadius="20" x:Name="yearView" />
+                        <Button Text="Decate View" BackgroundColor="#2193b0" CornerRadius="20" Clicked="decateView_Clicked" x:Name="decateView" />
+                        <Button Text="Century View" BackgroundColor="#2193b0" CornerRadius="20" Clicked="centuryView_Clicked" x:Name="centuryView" />
+
+
+                    </StackLayout>
+                    
+                </ScrollView>
+                
+            </Frame>
+            
+            
+            
+            
+            <calender:SfCalendar x:Name="calenderControl" Grid.Row="1" HoldCommand="{Binding Hold}"  SelectedDate="{Binding SelectedDate}"  DataSource="{Binding Events}" ShowInlineEvents="False" >
+               
+                
+                <calender:SfCalendar.MonthViewSettings>
+                    <calender:MonthViewSettings TodayBorderColor="Blue" DateSelectionColor="Blue"
+                                                 DayHeaderBackgroundColor="Blue" DayHeaderTextColor="White"
+                                                />
+                </calender:SfCalendar.MonthViewSettings>
+                
+                
+            </calender:SfCalendar>
+
+
+            <Frame Grid.Row="2" Padding="0" BackgroundColor="Transparent" >
+
+                <punny:PancakeView Margin="30,0" BackgroundColor="#1d2671" CornerRadius="40,40,0,0">
+
+                    <Button BackgroundColor="Transparent" Text="Add Event" TextColor="White" FontSize="30" />
+
+
+
+
+                </punny:PancakeView>
+                
+                    
+                
+            </Frame>
+            
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
+using BetaLearnOne.Services;
+using BetaLearnOne.Models;
+using BetaLearnOne.Views.Profile;
 
 namespace BetaLearnOne.ViewModels.AuthenticationVM
 {
@@ -11,11 +15,15 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
         private string password;
         private string confirmPassword;
         private int passwordLevelBar;
-        private string confirmColor;
+        private string confirmColor = "Red";
+        private int accesslevel = 0;
 
+        UserData userdata = new UserData();
 
+        public Command Signin { get; }
         public SignInViewModel()
         {
+            Signin = new Command(OnSignIn);
            
         }
 
@@ -48,8 +56,9 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
             get => password;
             set
             {
+                verifyPasswordLevel(Password);
+                PasswordLevelBar = accesslevel;
                 SetProperty(ref password, value);
-                verifyPasswordLevel(value);
                 OnPropertyChanged(nameof(password));
             }
         }
@@ -77,7 +86,7 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
 
         public string ConfirmColor
         {
-            get => passwordSame();
+            get => confirmColor;
             set
             {
                  
@@ -87,6 +96,17 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
         } 
 
 
+        private bool VerifyInput()
+        {
+            if(!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private void verifyPasswordLevel(string password)
         {
@@ -114,16 +134,24 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
             };
 
 
+
+            List<bool> ConditionOne = new List<bool>();
+            List<bool> ConditionTwo = new List<bool>();
+
+
+
+
+
             foreach(var num in numbers)
             {
                 if (password.IndexOf($"{num}") != -1)
                 {
-                    level += 25;
+                    ConditionOne.Add(true);
 
                 }
                 else
                 {
-                    level += 0;
+                    ConditionOne.Add(false);
                 }
             }
 
@@ -131,20 +159,36 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
             {
                 if(password.IndexOf(cha) != -1)
                 {
-                    level += 25;
+                    ConditionTwo.Add(true);
                 }
                 else
                 {
-                    level += 0;
+                    ConditionTwo.Add(false);
                 }
 
             }
 
+            if(ConditionOne.IndexOf(true) != -1)
+            {
+                level += 25;
+            }
+            else
+            {
+
+                level += 0;
+            }
+            if (ConditionTwo.IndexOf(true) != -1)
+            {
+                level += 25;
+            }
+            else
+            {
+
+                level += 0;
+            }
 
 
-
-
-            PasswordLevelBar = level;
+            accesslevel = level;
 
 
 
@@ -193,6 +237,34 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
                 return false;
             }
            
+
+        }
+
+       async void OnSignIn()
+        {
+            verifyPasswordLevel(Password);
+            if (VerifyInput())
+            {
+                var item = new User()
+                {
+                    Email = Email,
+                    UserName = Name,
+                    PassWord = Password,
+                    Bio = "Edit your Bio!!",
+                    ID = Guid.NewGuid().ToString(),
+                    IsStaff = false
+                };
+
+                userdata.AddPerson(item);
+                await Shell.Current.GoToAsync($"//{nameof(ProfilePage)}");
+
+
+
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Alert", "Please Check your Input and try again", "OK");
+            }
 
         }
 

@@ -92,7 +92,7 @@
                         <Frame Padding="0" BackgroundColor="Blue" BorderColor="Transparent" >
 
 
-                            <Button TextColor="White" Text="Login" x:Name="login" Clicked="login_Clicked" FontSize="23"  HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" FontAttributes="Bold" />
+                            <Button TextColor="White" Text="Login" x:Name="login" Command="{Binding Login}" FontSize="23"  HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" FontAttributes="Bold" />
 
 
 

@@ -31,7 +31,7 @@
         </Frame>
         <Frame Padding="0" BackgroundColor="Transparent" WidthRequest="50" HorizontalOptions="Center" HeightRequest="50" CornerRadius="60" >
 
-            <ImageButton BackgroundColor="Transparent" Source="UiPlanner.png" Aspect="AspectFit" />
+            <ImageButton BackgroundColor="Transparent" x:Name="calendar" Clicked="calendar_Clicked" Source="UiPlanner.png" Aspect="AspectFit" />
         </Frame>
 
         

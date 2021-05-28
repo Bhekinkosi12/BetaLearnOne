@@ -14,12 +14,17 @@ namespace BetaLearnOne.ViewModels
         public IDataStore<User> UserDataStore => DependencyService.Get<IDataStore<User>>();
 
         bool isBusy = false;
+        bool isAdmin = false;
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
-
+        public bool IsAdmin
+        {
+            get => isAdmin;
+            set { SetProperty(ref isAdmin, value); OnPropertyChanged(nameof(IsAdmin)); }
+        }
         string title = string.Empty;
         public string Title
         {

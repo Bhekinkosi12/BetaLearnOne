@@ -7,8 +7,10 @@ using Xamarin.CommunityToolkit.Extensions;
 using BetaLearnOne.Models;
 using SQLite;
 using System.IO;
-using Xamarin.forms;
 
+using Xamarin.Forms;
+using BetaLearnOne.Views.Popups;
+using BetaLearnOne.Views.Projects;
 
 namespace BetaLearnOne.ViewModels.ProfileVM
 {
@@ -19,10 +21,15 @@ namespace BetaLearnOne.ViewModels.ProfileVM
         private int level;
         private int points;
         private string bio;
+        private string bioEdit;
         private int profileStrenght;
         private ObservableCollection<User> rewards;
         public Command Edit { get; }
-       
+        public Command Projects { get; }
+        public Command SaveEdit { get; }
+
+
+        
        
 
 
@@ -63,6 +70,16 @@ namespace BetaLearnOne.ViewModels.ProfileVM
                 OnPropertyChanged(nameof(Bio));
             }
         }
+        public string BioEdit
+        {
+            get => bioEdit;
+            set
+            {
+                SetProperty(ref bioEdit, value);
+                OnPropertyChanged(nameof(BioEdit));
+            }
+        }
+
         public int ProfileStrenght
         {
             get => profileStrenght;
@@ -78,21 +95,30 @@ namespace BetaLearnOne.ViewModels.ProfileVM
 
 
 
-        private void AccesData()
+        private async void AccesData()
         {
-            var dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Memory.db");
-            var data = new SQLiteConnection(dataPath);
+            try
+            {
 
-            var table = data.Table<User>().FirstOrDefault();
 
-            if (table == null)
-                return;
+                var dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Memory.db");
+                var data = new SQLiteConnection(dataPath);
 
-            UserName = table.UserName;
-            Level = Getlevel(table.Points);
-            Bio = table.Bio;
-            ProfileStrenght = table.ProfileStrenght;
+                var table = data.Table<User>().FirstOrDefault();
 
+                if (table == null)
+                    return;
+
+                UserName = table.UserName;
+                Level = Getlevel(table.Points);
+                Bio = table.Bio;
+                ProfileStrenght = table.ProfileStrenght;
+                BioEdit = table.Bio;
+            }
+            catch
+            {
+                await Shell.Current.GoToAsync("//LoginPage");
+            }
             
 
 
@@ -106,10 +132,21 @@ namespace BetaLearnOne.ViewModels.ProfileVM
 
 
 
-        void OnEdit()
+         void OnEdit()
         {
             
             Shell.Current.ShowPopup(new ProfileEdit());
+        }
+        void OnSaveEdit()
+        {
+           Bio = BioEdit;
+           
+
+        }
+
+      async void OnProjects()
+        {
+            await Shell.Current.GoToAsync($"//{nameof(MainProjectPage)}");
         }
 
         private int Getlevel(int points)

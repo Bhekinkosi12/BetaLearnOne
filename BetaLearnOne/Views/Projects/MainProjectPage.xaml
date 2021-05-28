@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" Shell.NavBarIsVisible="False"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:BetaLearnOne.Models.ProjectModel"
+             xmlns:sorceFile="clr-namespace:BetaLearnOne.ViewModels.ProjectVM"
+             xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:projectvm="clr-namespace:BetaLearnOne.ViewModels.ProjectVM"
+             x:Class="BetaLearnOne.Views.Projects.MainProjectPage">
+    <ContentPage.BindingContext>
+        <projectvm:ProjectListViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <punny:PancakeView Padding="0" BackgroundColor="Blue" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1">
+             
+                
+                
+            <Frame Padding="0" BackgroundColor="Transparent" >
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Projects" TextColor="White" FontAttributes="Bold" FontSize="30"  HorizontalOptions="Center" VerticalOptions="Start" Margin="0,15,0,0" />
+                        <ImageButton BackgroundColor="Transparent" Margin="0,0,0,5" Grid.Column="1" Source="XUIdeviation.png" Aspect="AspectFit" />
+
+                    </Grid>
+                
+            </Frame>
+            </punny:PancakeView>
+
+
+
+            <Frame Padding="0"  BackgroundColor="White" Grid.Row="1"  CornerRadius="20" Margin="0,-20,0,0" >
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="70" />
+                    </Grid.RowDefinitions>
+
+
+                    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding ReLoadItems}" Grid.RowSpan="2" >
+                        
+                <ScrollView Orientation="Vertical" Grid.RowSpan="2" >
+
+                    <StackLayout>
+
+                            <CollectionView ItemsSource="{Binding Projects}" SelectedItem="{Binding ItemClicked}" SelectionMode="None" BackgroundColor="Transparent" Margin="10,15,10,0" >
+
+
+
+                                    <CollectionView.ItemsLayout>
+                                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical"  />
+                                    </CollectionView.ItemsLayout>
+
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame BackgroundColor="#f5f5f5" CornerRadius="10" Margin="15,0" Padding="0" x:DataType="local:ProjectM">
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type sorceFile:ProjectListViewModel}}, Path=ItemClicked}" CommandParameter="{Binding .}" />
+                                                </Frame.GestureRecognizers>
+                                                
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="10" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="40" />
+
+                                                    </Grid.ColumnDefinitions>
+
+
+                                                    <BoxView BackgroundColor="{Binding ProjectColor}"  />
+
+                                                    <Frame Padding="0" BackgroundColor="Transparent" Grid.Column="1"  CornerRadius="10" Margin="-6,0,0,0" >
+                                                        <Grid >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="30" />
+                                                                <RowDefinition Height="50" />
+                                                            </Grid.RowDefinitions>
+
+                                                            <Label Text="{Binding Subject}" TextColor="#191919" FontSize="20" HorizontalOptions="Center" />
+
+                                                            <Label Text="{Binding ProjectName}" TextColor="#242424" FontSize="17" Margin="5" Grid.Row="1" />
+
+
+
+                                                        </Grid>
+                                                        
+                                                        
+                                                    </Frame>
+                                                    
+
+
+
+
+                                                </Grid>
+                                                
+                                                
+                                            </Frame>
+                                            
+                                        </DataTemplate>
+                                        
+                                    </CollectionView.ItemTemplate>
+                                
+                                
+                            </CollectionView>
+
+                        
+                        
+
+
+
+                    </StackLayout>
+                </ScrollView>
+                    </RefreshView>
+
+
+                    <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" Margin="0,0,0,10" >
+
+
+                        <Grid Margin="0,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="60" />
+                            </Grid.ColumnDefinitions>
+                            
+                            
+                        <Frame BackgroundColor="Blue" Padding="0" HeightRequest="50" Grid.Column="1" WidthRequest="50" CornerRadius="50" >
+                            <Label Text="+" FontSize="30" HorizontalOptions="Center" TextColor="White" VerticalOptions="Center" />
+                        </Frame>
+                        </Grid>
+                        
+                        
+                        
+                    </Frame>
+                    
+                    
+                    
+                    
+                </Grid>
+            </Frame>
+        </Grid>
+        
+    </ContentPage.Content>
+</ContentPage>

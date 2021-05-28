@@ -12,7 +12,7 @@ using BetaLearnOne.Views.Tools;
 namespace BetaLearnOne.Views.Popups
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ToolPopup : Popus
+    public partial class ToolPopup : Popup
     {
         public ToolPopup()
         {
@@ -27,6 +27,10 @@ namespace BetaLearnOne.Views.Popups
 
         }
 
-         
+        private async void calendar_Clicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(CalenderPage));
+
+        }
     }
 }

@@ -2,7 +2,8 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:BetaLearnOne.Views"
-       xmlns:locals="clr-namespace:BetaLearnOne.Views.LearnView"
+       xmlns:locals="clr-namespace:BetaLearnOne.Views.Projects"
+       xmlns:calendar="clr-namespace:BetaLearnOne.Views.Tools"
        NavigationPage.HasNavigationBar="False"
        xmlns:localss="clr-namespace:BetaLearnOne.Views.Profile"
        Title="BetaLearnOne"
@@ -18,11 +19,11 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="#1569c7" />
+                <Setter Property="Shell.ForegroundColor" Value="Blue" />
                 <Setter Property="Shell.TitleColor" Value="#1569c7" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="Transparent" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="#1569c7" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="Blue" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="Transparent"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="LightGray"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
@@ -34,7 +35,14 @@
     </Shell.Resources>
 
     <TabBar>
+
         
+
+
+
+               <ShellContent Title="Projects" Route="MainProjectPage" Icon="XUIProfile.png" ContentTemplate="{DataTemplate locals:MainProjectPage}" />
+       
+       
         <ShellContent Title="Learn" Icon="XUIProjects.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
         <ShellContent Title="Profile" Icon="UiappsTab.png" Route="Profile" ContentTemplate="{DataTemplate localss:ProfilePage}" />
     </TabBar>

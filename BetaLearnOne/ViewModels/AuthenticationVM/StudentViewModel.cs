@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using BetaLearnOne.Services;
 using BetaLearnOne.Models;
 using BetaLearnOne.Views.LearnView;
+using BetaLearnOne.Views.Profile;
 
 namespace BetaLearnOne.ViewModels.AuthenticationVM
 {
@@ -16,7 +17,7 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
         private string phone;
         private string password;
 
-
+         
 
 
        private UserData data = new UserData();
@@ -126,7 +127,7 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
 
             if(condition == true)
             {
-               await Shell.Current.GoToAsync($"{nameof(LearnPage)}");
+               await Shell.Current.GoToAsync($"{nameof(ProfilePage)}");
             }
             else
             {

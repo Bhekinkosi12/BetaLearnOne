@@ -24,18 +24,22 @@ namespace BetaLearnOne.ViewModels
         public Command Divide { get; }
         public Command Multiply { get; }
 
+        
 
-       
+
+
         string wordEquation;
         string lastOperator;
-      
+        string operators = "";
+        string current = "0";
+
         string number;
         string answer;
         double refAnswer = 0;
         string newNumberS;
         double newNumberD;
 
-      
+
         public string Answer
         {
             get => answer;
@@ -63,25 +67,50 @@ namespace BetaLearnOne.ViewModels
             get => number;
             set
             {
-                SetProperty(ref number , value);
+                SetProperty(ref number, value);
                 OnPropertyChanged(nameof(Number));
 
             }
         }
-        
+
         void OnOne()
         {
             string one = "1";
+            if(operators != ".")
+            {
+            Answer = InputHandle(one, operators, current);
+            current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
+
+
             wordEquation = wordEquation + one;
             Number = wordEquation;
             newNumberS = newNumberS + one;
-
 
 
         }
         void OnTwo()
         {
             string one = "2";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
+
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -89,6 +118,17 @@ namespace BetaLearnOne.ViewModels
         void OnThree()
         {
             string one = "3";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -96,6 +136,17 @@ namespace BetaLearnOne.ViewModels
         void OnFour()
         {
             string one = "4";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -103,6 +154,17 @@ namespace BetaLearnOne.ViewModels
         void OnFive()
         {
             string one = "5";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -110,6 +172,17 @@ namespace BetaLearnOne.ViewModels
         void OnSix()
         {
             string one = "6";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -117,6 +190,17 @@ namespace BetaLearnOne.ViewModels
         void OnSeven()
         {
             string one = "7";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -124,6 +208,17 @@ namespace BetaLearnOne.ViewModels
         void OnEight()
         {
             string one = "8";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -131,6 +226,17 @@ namespace BetaLearnOne.ViewModels
         void OnNine()
         {
             string one = "8";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -138,6 +244,17 @@ namespace BetaLearnOne.ViewModels
         void OnZero()
         {
             string one = "0";
+            if (operators != ".")
+            {
+                Answer = InputHandle(one, operators, current);
+                current = Answer;
+
+            }
+            else
+            {
+                current = current + one;
+            }
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -145,6 +262,13 @@ namespace BetaLearnOne.ViewModels
         void OnDot()
         {
             string one = ".";
+            operators = one;
+
+                Answer = InputHandle("0", operators, current);
+                current = Answer;
+
+           
+
             wordEquation = wordEquation + one;
             newNumberS = newNumberS + one;
             Number = wordEquation;
@@ -155,16 +279,74 @@ namespace BetaLearnOne.ViewModels
         void OnClear()
         {
             string one = "";
-            wordEquation =  one;
+            wordEquation = one;
             Number = wordEquation;
             refAnswer = 0;
             Answer = "";
-            
+
 
         }
 
+        private string InputHandle(string input,string oper,string currentNum)
+        {
+           
+            string output;
+            if(oper != "")
+            {
+              
+                    double num = double.Parse(input);
+                    double currentnum = double.Parse(currentNum);
+                
+
+                    if (oper == "/")
+                    {
+                        output = $"{currentnum / num}";
+                        return output;
+
+                    }
+                    else if (oper == "*")
+                    {
+                        output = $"{currentnum * num}";
+                    return output;
+
+                      }
+                    else if (oper == "+")
+                    {
+                        output = $"{currentnum + num}";
+                    return output;
+
+                   }
+                    else  
+                    {
+                        output = $"{currentnum - num}";
+                     return output;
+
+                      }
+                   
+
+
+
+                
+
+
+
+
+            }
+            else
+            {
+                return input;
+            }
+
+
+
+
+        }
+        
+       
+
       async  void OnDivide()
         {
+            
             if (string.IsNullOrEmpty(wordEquation) != true)
             {
 
@@ -199,9 +381,15 @@ namespace BetaLearnOne.ViewModels
             }
 
 
+            operators = "/";
+
+           
+
         }
        async void OnMultiply()
         {
+
+            operators = "*";
             if (string.IsNullOrEmpty(wordEquation) != true)
             {
 
@@ -238,6 +426,7 @@ namespace BetaLearnOne.ViewModels
         }
        async void OnAdd()
         {
+            operators = "+";
             if (string.IsNullOrEmpty(wordEquation) != true)
             {
 
@@ -274,6 +463,7 @@ namespace BetaLearnOne.ViewModels
         }
       async  void OnSubtract()
         {
+            operators = "-";
 
             if (string.IsNullOrEmpty(wordEquation) != true)
             {

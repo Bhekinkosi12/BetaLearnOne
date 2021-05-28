@@ -31,7 +31,12 @@ namespace BetaLearnOne.Services
 
                 data.CreateTable<User>();
 
-                data.InsertAll(list);
+                foreach(var item in list)
+                {
+                    data.Insert(item);
+                }
+               
+                
             }
             catch(Exception ex)
             {
@@ -62,17 +67,22 @@ namespace BetaLearnOne.Services
 
         public bool StudentUserData(string email,string password)
         {
+            DataBase(StudentDataFile, Students);
 
             var dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), StudentDataFile);
-            var data = new SQLiteConnection(dataPath);
-
+            SQLiteConnection data = new SQLiteConnection(dataPath);
+            
             var table =  data.Table<User>();
+            
+            
+
            var item = table.Where(x => x.PassWord == password && x.Email == email).FirstOrDefault();
+
 
 
             if(item != null)
             {
-                AddDataToMemory(item);
+               AddDataToMemory(item);
                 return true;
 
             }
@@ -107,29 +117,10 @@ namespace BetaLearnOne.Services
 
 
 
-
+             
         }
-        private int Getlevel(int points)
-        {
-            
-            double a = points / 1000;
-            
-            int b = Int32.Parse(Math.Floor(a).ToString());
-
-           if(b < 2)
-            {
-                return 1;
-            }
-            else
-            {
-                return b;
-            }
-          
-            
-
-            
-        }
-
+       
+        
 
 
         public UserData()
@@ -189,6 +180,109 @@ namespace BetaLearnOne.Services
             DataBase(StaffDataFile, Staff);
 
         }
+
+
+
+        public void AddPerson(User user)
+        {
+            if (user.IsStaff)
+            {
+                Staff.Add(user);
+                DataBase(StudentDataFile, Students);
+            }
+            else
+            {
+
+                 Students.Add(user);
+                DataBase(StaffDataFile, Staff);
+            }
+
+        }
+
+
+        public bool TryFindPersonEmail(string Email)
+        {
+            var user = Staff.Where(x => x.Email == Email).FirstOrDefault();
+            if(user != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public bool TryFindPersonNumber(string number)
+        {
+            var user = Staff.Where(x => x.Phone == number).FirstOrDefault();
+            if (user != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public User FindPersonNumber(string number)
+        {
+            var def = new User()
+            {
+                Email = "admin",
+                PassWord = "admin",
+                ID = "admin",
+
+            };
+
+
+
+            var user = Staff.Where(x => x.Phone == number).FirstOrDefault();
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                return def;
+            }
+
+        }
+
+        public User FindPersonEmail(string Email)
+        {
+            var def = new User()
+            {
+                 Email = "admin",
+                 PassWord = "admin",
+                 ID = "admin",
+                 
+            };
+
+
+
+            var user = Staff.Where(x => x.Email == Email).FirstOrDefault();
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                return def;
+            }
+
+        }
+
+
+
+
+
+
+
+
+
 
         public User GetStaffAsync(string staffNumber)
         {

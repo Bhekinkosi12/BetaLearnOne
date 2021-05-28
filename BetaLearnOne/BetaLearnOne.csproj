@@ -6,6 +6,58 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Asserts\AfikaansTaal.pdf" />
+    <None Remove="Asserts\BusinessStudies.pdf" />
+    <None Remove="Asserts\Computer.pdf" />
+    <None Remove="Asserts\LifeSciences2017.pdf" />
+    <None Remove="Asserts\MathLite.pdf" />
+    <None Remove="Asserts\MathMTG.pdf" />
+    <None Remove="Asserts\MathQP\Math2014P1.pdf" />
+    <None Remove="Asserts\MathQP\Math2014P1Memo.pdf" />
+    <None Remove="Asserts\MathQP\Math2014P2.pdf" />
+    <None Remove="Asserts\MathQP\Math2014P2Memo.pdf" />
+    <None Remove="Asserts\PhysicalSciencesDefinitions.pdf" />
+    <None Remove="Asserts\PhysicalSciencesG12.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Asserts\AfikaansTaal.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\BusinessStudies.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\Computer.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\LifeSciences2017.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\MathLite.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\MathMTG.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\MathQP\Math2014P1.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\MathQP\Math2014P1Memo.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\MathQP\Math2014P2.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\MathQP\Math2014P2Memo.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\PhysicalSciencesDefinitions.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asserts\PhysicalSciencesG12.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Apis" Version="1.51.0" />
     <PackageReference Include="Google.Apis.Container.v1" Version="1.51.0.2315" />
     <PackageReference Include="Google.Apis.Core" Version="1.51.0" />
@@ -27,11 +79,14 @@
     <PackageReference Include="Syncfusion.Xamarin.SfCalendar" Version="19.1.0.64" />
     <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="19.1.0.64" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="19.1.0.64" />
     <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="19.1.0.64" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="19.1.0.64" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="19.1.0.64" />
     <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="19.1.0.64" />
     <PackageReference Include="Syncfusion.Xamarin.SfRangeSlider" Version="19.1.0.64" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.1.0.64" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.1.0.64" />
     <PackageReference Include="Xamanimation" Version="1.3.0" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0-pre2" />
@@ -40,6 +95,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
     <PackageReference Include="Xamarin.Forms.OpenWhatsApp" Version="1.0.1" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.763-beta" />  
+    <PackageReference Include="Xamarin.Forms.SaveOpenPDFPackage" Version="1.0.0" />  
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2012" />
   </ItemGroup>
 
@@ -53,7 +109,19 @@
     <EmbeddedResource Update="Views\Authentication\SigninStudent.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ExamView\ExamPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\LearnView\LearnPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LearnView\PDFLearningPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\CalendarPop\SetDatePopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\Logging\ForgotPasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\ProfileEdit.xaml">
@@ -65,7 +133,16 @@
     <EmbeddedResource Update="Views\Profile\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Projects\MainProjectPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Projects\ProjectItemPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Tools\CalculatorPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Tools\CalenderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

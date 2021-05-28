@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Shell.NavBarIsVisible="False"
+             xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:projectvm="clr-namespace:BetaLearnOne.ViewModels.ProjectVM"
+             x:Class="BetaLearnOne.Views.Projects.ProjectItemPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="punny:PancakeView" x:Key="punnyStyle" >
+                <Setter Property="WidthRequest" Value="90" />
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="CornerRadius" Value="0,18,18,0" />
+            </Style>
+            <Style TargetType="punny:PancakeView" x:Key="UserStyle" >
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="CornerRadius" Value="80" />
+                <Setter Property="BackgroundColor" Value="White" />
+
+            </Style> 
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    
+    <ContentPage.BindingContext>
+        <projectvm:ProjectItemViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="280" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <punny:PancakeView  BackgroundColor="Blue" CornerRadius="0,0,50,0" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1">
+                
+                
+                
+                <Frame Padding="0" BackgroundColor="Transparent" Margin="20,20,10,10" HasShadow="True" >
+                    <Grid >
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="80" />
+
+                        </Grid.RowDefinitions>
+
+
+                        <Frame BackgroundColor="Transparent" Padding="0" >
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <Label Text="Project Name" TextColor="White" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start" />
+                                <ImageButton BackgroundColor="Transparent" Aspect="AspectFit" Source="XUIdeviation.png" Grid.Column="1" />
+
+                            </Grid>
+                            
+                        </Frame>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    <ScrollView HorizontalScrollBarVisibility="Never" Grid.Row="1" VerticalScrollBarVisibility="Never">
+                        
+                        
+                    <StackLayout Orientation="Horizontal" Spacing="20" >
+
+                            <punny:PancakeView BackgroundGradientStartPoint="0,0" Style="{StaticResource punnyStyle}" BackgroundGradientEndPoint="1,1"    >
+                                <punny:PancakeView.BackgroundGradientStops>
+                                    <punny:GradientStopCollection >
+                                        <punny:GradientStop Color="#396afc" Offset="0" />
+                                        <punny:GradientStop Color="#2948ff" Offset="1" />
+                                    </punny:GradientStopCollection>
+                                </punny:PancakeView.BackgroundGradientStops>
+                                
+                                <Frame Padding="0" BorderColor="Transparent" BackgroundColor="Transparent" >
+
+                                    <Grid >
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="40" />
+
+                                        </Grid.RowDefinitions>
+
+                                        <ImageButton BackgroundColor="Transparent" Command="{Binding Calendar}" HorizontalOptions="Center" VerticalOptions="Center" Source="UiPlanner.png" Aspect="AspectFit" />
+                                        <Label Text="Calender" HorizontalTextAlignment="Center" TextColor="White" FontSize="20" Grid.Row="1" />
+
+
+                                    </Grid>
+                                    
+                                    
+                                    
+                                </Frame>
+                                
+                            </punny:PancakeView>
+
+
+
+
+                            <punny:PancakeView BackgroundGradientStartPoint="0,0" Style="{StaticResource punnyStyle}" BackgroundGradientEndPoint="1,1"   >
+                                <punny:PancakeView.BackgroundGradientStops>
+                                    <punny:GradientStopCollection >
+                                        <punny:GradientStop Color="#f12711" Offset="0" />
+                                        <punny:GradientStop Color="#f5af19" Offset="1" />
+                                    </punny:GradientStopCollection>
+                                </punny:PancakeView.BackgroundGradientStops>
+
+                                <Frame Padding="0" BorderColor="Transparent" BackgroundColor="Transparent" >
+
+                                    <Grid >
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="40" />
+
+                                        </Grid.RowDefinitions>
+
+                                        <ImageButton BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Source="UiJournal.png" Aspect="AspectFit" />
+                                        <Label Text="Notes" HorizontalTextAlignment="Center" TextColor="White" FontSize="20" Grid.Row="1" />
+
+
+                                    </Grid>
+
+
+
+                                </Frame>
+
+                            </punny:PancakeView>
+
+
+
+                                <punny:PancakeView BackgroundGradientStartPoint="0,0" Style="{StaticResource punnyStyle}" BackgroundGradientEndPoint="1,1"   >
+                                    <punny:PancakeView.BackgroundGradientStops>
+                                        <punny:GradientStopCollection >
+                                            <punny:GradientStop Color="#e52d27" Offset="0" />
+                                            <punny:GradientStop Color="#b31217" Offset="1" />
+                                        </punny:GradientStopCollection>
+                                    </punny:PancakeView.BackgroundGradientStops>
+
+                                    <Frame Padding="0" BorderColor="Transparent" BackgroundColor="Transparent" >
+
+                                        <Grid >
+                                            <Grid.RowDefinitions >
+                                                <RowDefinition Height="50" />
+                                                <RowDefinition Height="40" />
+
+                                            </Grid.RowDefinitions>
+
+                                            <ImageButton BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="Center" Source="UiSecuredLetter.png" Aspect="AspectFit" />
+                                            <Label Text="Tools"  HorizontalTextAlignment="Center" TextColor="White" FontSize="20" Grid.Row="1" />
+
+
+                                        </Grid>
+
+
+
+                                    </Frame>
+
+                                </punny:PancakeView>
+
+
+
+                            </StackLayout>
+                    </ScrollView>
+
+
+                        <Frame Padding="0" BackgroundColor="Transparent" Margin="0,12,0,0"  VerticalOptions="Center" Grid.Row="2" >
+
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="160" />
+                                    <ColumnDefinition Width="*" />
+                                   
+                                </Grid.ColumnDefinitions>
+
+                                <Frame Padding="0,4" BackgroundColor="Transparent" >
+                                    <StackLayout Orientation="Horizontal" Padding="7" VerticalOptions="Center">
+                                        <punny:PancakeView Padding="0"  Style="{StaticResource UserStyle}">
+
+                                            <Image Source="XUIProfile.png" Aspect="AspectFit" />
+
+                                        </punny:PancakeView>
+                                        <punny:PancakeView Padding="0" BackgroundColor="Red"  Style="{StaticResource UserStyle}">
+
+                                            <Image Source="XUIProfile.png" Aspect="AspectFit" />
+
+                                        </punny:PancakeView>
+                                        <punny:PancakeView Padding="0" BackgroundColor="Yellow"  Style="{StaticResource UserStyle}">
+
+                                            <Image Source="XUIProfile.png" Aspect="AspectFit" />
+
+                                        </punny:PancakeView>
+
+                                    </StackLayout>
+                                    
+                                </Frame>
+
+                                <Frame BackgroundColor="Transparent" Grid.Column="1" >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+                                        <Label >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="Given : " TextColor="White" FontSize="16" FontAttributes="Bold" />
+                                                        <Span Text="20/08/2012" TextColor="White" FontSize="16" />
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                            
+                                        </Label>
+
+                                        <Label Grid.Row="1" >
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="Due :    " TextColor="White" FontSize="16" FontAttributes="Bold" />
+                                                        <Span Text="20/08/2012" TextColor="White" FontSize="16" />
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+
+                                        </Label>
+
+
+
+                                    </Grid>
+                                    
+                                    
+                                </Frame>
+                                
+                                
+                                
+                            </Grid>
+                            
+                            
+                        </Frame>
+                            
+                        
+                    </Grid>
+                    
+
+                    
+                    
+                </Frame>
+                
+                
+                
+            </punny:PancakeView>
+            
+            
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

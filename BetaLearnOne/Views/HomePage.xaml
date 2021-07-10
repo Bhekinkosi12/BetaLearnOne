@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Shell.NavBarIsVisible="False" Shell.TabBarIsVisible="False"
+             xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="BetaLearnOne.Views.HomePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary >
+            <Style TargetType="punny:PancakeView" x:Key="punnystyle" >
+                <Setter Property="Margin" Value="15,0,15,0" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="HeightRequest" Value="60" />
+
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="20">
+            <Label Text="Home" FontSize="35" FontAttributes="Bold" TextColor="Blue" HorizontalOptions="Center" />
+
+
+            <punny:PancakeView Style="{StaticResource punnystyle}" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1">
+                <punny:PancakeView.BackgroundGradientStops>
+                    <punny:GradientStopCollection>
+                        <punny:GradientStop Color="LightBlue" Offset="0" />
+                        <punny:GradientStop Color="blue" Offset="1" />
+                    </punny:GradientStopCollection>
+                </punny:PancakeView.BackgroundGradientStops>
+
+                <Grid >
+                    <Grid.GestureRecognizers >
+                        <TapGestureRecognizer x:Name="Note" Tapped="Note_Tapped" />
+                    </Grid.GestureRecognizers>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="UiJournal.png" Aspect="AspectFit" />
+
+                    <Label Text="Notes" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" Grid.Column="1" />
+
+
+                </Grid>
+                
+                
+            </punny:PancakeView>
+
+
+
+            <punny:PancakeView Style="{StaticResource punnystyle}" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1">
+                <punny:PancakeView.BackgroundGradientStops>
+                    <punny:GradientStopCollection>
+                        <punny:GradientStop Color="LightBlue" Offset="0" />
+                        <punny:GradientStop Color="blue" Offset="1" />
+                    </punny:GradientStopCollection>
+                </punny:PancakeView.BackgroundGradientStops>
+                
+
+                <Grid >
+                    <Grid.GestureRecognizers >
+                        <TapGestureRecognizer x:Name="calculator" Tapped="calculator_Tapped"  NumberOfTapsRequired="1"/>
+                    </Grid.GestureRecognizers>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="Uiestimate.png" Aspect="AspectFit" />
+
+                    <Label Text="Calculator" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" Grid.Column="1" />
+
+
+                </Grid>
+
+
+            </punny:PancakeView>
+
+
+            <punny:PancakeView Style="{StaticResource punnystyle}" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1">
+                <punny:PancakeView.BackgroundGradientStops>
+                    <punny:GradientStopCollection>
+                        <punny:GradientStop Color="LightBlue" Offset="0" />
+                        <punny:GradientStop Color="blue" Offset="1" />
+                    </punny:GradientStopCollection>
+                </punny:PancakeView.BackgroundGradientStops>
+
+                <Grid >
+                    <Grid.GestureRecognizers >
+                        <TapGestureRecognizer x:Name="calendar" Tapped="calendar_Tapped" />
+                    </Grid.GestureRecognizers>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="UiPlanner.png" Aspect="AspectFit" />
+
+                    <Label Text="Calendar" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" Grid.Column="1" />
+
+                </Grid>
+
+
+            </punny:PancakeView>
+
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

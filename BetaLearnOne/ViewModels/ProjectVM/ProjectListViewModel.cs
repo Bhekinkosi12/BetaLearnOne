@@ -8,6 +8,7 @@ using BetaLearnOne.Services;
 using BetaLearnOne.Views.Projects;
 using BetaLearnOne.ViewModels.ProjectVM;
 using System.Threading.Tasks;
+using BetaLearnOne.Services.ProjectServices;
 
 namespace BetaLearnOne.ViewModels.ProjectVM
 {
@@ -20,17 +21,21 @@ namespace BetaLearnOne.ViewModels.ProjectVM
         public Command<ProjectM> DeleteProject { get; }
 
 
+
+
         public void OnAppearing()
         {
             IsBusy = true;
         }
             ProjectData projectData = new ProjectData();
+        ProjectBaseStore baseStore = new ProjectBaseStore();
       
 
 
         public ProjectListViewModel()
         {
-            Projects = GetProjects();
+            Projects = new ObservableCollection<ProjectM>();
+            GetProjects();
             ItemClicked = new Command<ProjectM>(OnItemClicked);
             ReLoadItems = new Command(async () => await ExecuteLoadItemsCommand());
             DeleteProject = new Command<ProjectM>(OnDelete);
@@ -44,11 +49,17 @@ namespace BetaLearnOne.ViewModels.ProjectVM
             try
             {
                 Projects.Clear();
-                var items = projectData.GetProjects();
-                foreach (var item in items)
+               // var ite = await baseStore.ReturnItemsAsync();
+              //  var items = baseStore.GetData();
+                var data = projectData.ReturningProjects();
+                ObservableCollection<ProjectM> projects = new ObservableCollection<ProjectM>();
+
+                foreach (var item in data)
                 {
-                    Projects.Add(item);
+                    projects.Add(item);
                 }
+                Projects = projects;
+
             }
             catch 
             {
@@ -62,30 +73,33 @@ namespace BetaLearnOne.ViewModels.ProjectVM
 
 
 
-        private ObservableCollection<ProjectM> GetProjects()
+        private  void GetProjects()
         {
             ObservableCollection<ProjectM> projects = new ObservableCollection<ProjectM>();
-            var items = projectData.GetProjects();
-            foreach(var item in items)
+           // var ite = await baseStore.ReturnItemsAsync();
+         //   var items = baseStore.GetData();
+            var data = projectData.ReturningProjects();
+            foreach (var item in data)
             {
                 projects.Add(item);
             }
 
-            return projects;
+           Projects = projects;
 
         }
 
 
-        private void OnDelete(ProjectM item)
+        private async void OnDelete(ProjectM item)
         {
             ObservableCollection<ProjectM> projects = new ObservableCollection<ProjectM>();
             projectData.DeleteItem(item);
-            var items = projectData.GetProjects();
+            var items = await baseStore.ReturnItemsAsync();
+          //  var items = await projectData.GetProjects();
             foreach (var i in items)
             {
                 projects.Add(i);
             }
-            Projects = projects;
+          //  Projects = projects;
             
 
         }
@@ -96,7 +110,7 @@ namespace BetaLearnOne.ViewModels.ProjectVM
             if (item == null)
                 return;
 
-           await Shell.Current.GoToAsync($"{nameof(ProjectItemPage)}?{nameof(ProjectItemViewModel.ID)}={item.ID}");
+           await Shell.Current.GoToAsync($"{nameof(ProjectItemPage)}?{nameof(ProjectItemViewModel.ItemId)}={item.Id}");
 
         }
 

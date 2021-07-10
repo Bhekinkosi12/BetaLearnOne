@@ -4,27 +4,37 @@ using System.Text;
 using System.IO;
 using BetaLearnOne.Services.ExamDataStore;
 using System.Reflection;
+using Xamarin.Forms;
 
 namespace BetaLearnOne.ViewModels.ExamVM
 {
-   public class ExamViewModel : BaseViewModel
+    [QueryProperty(nameof(ItemID), nameof(ItemID))]
+    public class ExamViewModel : BaseViewModel
     {
         private string itemId;
+        private string position;
         private Stream question;
         private Stream answer;
 
         ExamData data = new ExamData();
-
-        public string ItemId
+         
+        public string ItemID
         {
             get => itemId;
             set
             {
                 SetProperty(ref itemId, value);
-                LoadItem(value);
-                OnPropertyChanged(nameof(ItemId));
+                // LoadItem(value);
+                loadFromDicionary(value);
+
+
+                OnPropertyChanged(nameof(ItemID));
             }
         }
+
+
+      
+
         public Stream Question
         {
             get => question;
@@ -49,19 +59,46 @@ namespace BetaLearnOne.ViewModels.ExamVM
 
 
 
-        void LoadItem(string id)
+       async void LoadItem(string id)
         {
+            try
+            {
 
-           var item = data.ItemById(id);
+           var item = data.GetItemById(id);
 
             Question = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream(item.PaperPath);
             Answer = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream(item.MemoPath);
-
+            }
+             catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
 
 
 
 
         }
+
+     
+
+       async void loadFromDicionary(string id)
+        {
+            try
+            {
+
+            var item = data.ItemFromDictionary(id);
+            Question = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream(item[0]);
+            Answer = typeof(App).GetTypeInfo().Assembly.GetManifestResourceStream(item[1]);
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+
+        }
+
+       
 
 
 

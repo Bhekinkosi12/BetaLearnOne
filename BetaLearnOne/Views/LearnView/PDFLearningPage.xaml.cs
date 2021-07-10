@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BetaLearnOne.Views.Tools;
 
 namespace BetaLearnOne.Views.LearnView
 {
@@ -31,13 +32,14 @@ namespace BetaLearnOne.Views.LearnView
 
         }
 
-        private void ToolBTN_Clicked(object sender, EventArgs e)
+        private async void ToolBTN_Clicked(object sender, EventArgs e)
         {
+            await Shell.Current.GoToAsync(nameof(CalculatorPage));
             if(visible == false)
             {
 
             FrameFly.IsVisible = true;
-                visible = true;
+                visible = false;
             }
             else
             {

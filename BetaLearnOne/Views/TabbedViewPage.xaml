@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" Shell.NavBarIsVisible="False" Shell.TabBarIsVisible="False" 
+             
+             xmlns:tab="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" xmlns:viewmodels="clr-namespace:BetaLearnOne.ViewModels"
+             x:Class="BetaLearnOne.Views.TabbedViewPage">
+    <ContentPage.BindingContext>
+        <viewmodels:TabbedViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        
+            <tab:SfTabView BackgroundColor="White" EnableVirtualization="True"  CenterButtonTapped="SfTabView_CenterButtonTapped" EnableSwiping="True"  VisibleHeaderCount="-1"  DisplayMode="Text" TabHeaderPosition="Bottom" TabWidthMode="Default"  EnableRippleAnimation="True"  Items="{Binding sfTabItems}"  >
+
+                
+            <tab:SfTabView.CenterButtonView>
+                <Grid >
+                    <ImageButton Command="{Binding Open}" BackgroundColor="Transparent" Source="windows.png" Aspect="AspectFit" />
+                    
+                </Grid>
+            </tab:SfTabView.CenterButtonView>
+
+              
+                
+            </tab:SfTabView>
+        
+      
+      
+    </ContentPage.Content>
+</ContentPage>

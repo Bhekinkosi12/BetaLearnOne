@@ -20,19 +20,19 @@ namespace BetaLearnOne.ViewModels
     {
         private string itemId;
         private string text;
-        private string proName;
+      
         private string description;
-        private string subImage;
+        private int position;
         private string intro;
         private Paper currentItem;
-        private string backgroundImage;
+        
         private ObservableCollection<Paper> listTopics;
         
         private List<Learn> learningData;
         LearnViewModel learnViewModel = new LearnViewModel();
         TopicsDataStore topicsDataStore = new TopicsDataStore();
 
-        private List<Topic> listTopicsHO;
+       
         public Command Click { get; }
         public Command Tools { get; }
 
@@ -48,7 +48,15 @@ namespace BetaLearnOne.ViewModels
 
 
     
-
+        public int Position
+        {
+            get => position;
+            set
+            {
+                SetProperty(ref position, value);
+                OnPropertyChanged(nameof(Position));
+            }
+        }
         public string Intro
         {
             get => intro;
@@ -138,12 +146,14 @@ namespace BetaLearnOne.ViewModels
                 var item = await DataStore.GetItemAsync(itemId);
                 Id = item.Id;
                 
+                
+                
             
 
                 foreach(var i in item.List)
                 {
                     collect.Add(i);
-
+                    break;
                     
                 }
                 ListTopics = collect;
@@ -180,7 +190,7 @@ namespace BetaLearnOne.ViewModels
 
                // await Shell.Current.GoToAsync($"{nameof(LearnPage)}");
                 
-                 await Shell.Current.GoToAsync($"{nameof(ExamPage)}?{nameof(ExamViewModel.ItemId)}={CurrentItem.ID}");
+                 await Shell.Current.GoToAsync($"{nameof(ExamPage)}?{nameof(ExamViewModel.ItemID)}={CurrentItem.ID}");
             }
             catch(Exception ex)
             {

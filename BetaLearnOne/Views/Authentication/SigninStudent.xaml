@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             NavigationPage.HasNavigationBar="False"
-              xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             NavigationPage.HasNavigationBar="False" Shell.NavBarIsVisible="False"
+             xmlns:kit="clr-namespace:Xamarin.CommunityToolkit.Markup;assembly=Xamarin.CommunityToolkit.Markup"
+              xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" xmlns:authenticationvm="clr-namespace:BetaLearnOne.ViewModels.AuthenticationVM"
              x:Class="BetaLearnOne.Views.Authentication.SigninStudent">
+    <ContentPage.BindingContext>
+        <authenticationvm:SignInViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -16,15 +20,19 @@
 
             <Frame Padding="0" BackgroundColor="Transparent" >
 
-                <Image Aspect="AspectFit" Source="LearnBeta.jpg"  />
+                <Image Aspect="AspectFit" Source="mathFive.png"  />
 
             </Frame>
 
 
 
+            
+            
 
             <Frame Padding="0" BackgroundColor="Transparent" Grid.Row="1" >
 
+                <ScrollView>
+                    
                 <Grid RowSpacing="14">
                     <Grid.RowDefinitions >
                         <RowDefinition Height="60" />
@@ -36,6 +44,8 @@
 
                     </Grid.RowDefinitions>
 
+                    
+                    
                     <punny:PancakeView Margin="14,3" >
 
 
@@ -70,12 +80,19 @@
                                     <ColumnDefinition Width="50" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="5"/>
+                                    </Grid.RowDefinitions>
 
 
                                 <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="UiSelfies.png" />
-                                <Entry Grid.Column="1" Keyboard="Email" BackgroundColor="Transparent" Text="{Binding Email, Mode=TwoWay}" TextColor="Black" Placeholder="Email Adress" PlaceholderColor="Gray" />
+                                <Entry Grid.Column="1" Keyboard="Email" x:Name="email" TextChanged="email_TextChanged"  BackgroundColor="Transparent" Text="{Binding Email, Mode=TwoWay}" TextColor="Black" Placeholder="Email Adress" PlaceholderColor="Gray" />
 
-                            </Grid>
+
+                                    <BoxView x:Name="BoxEmail" Grid.ColumnSpan="2" Grid.Row="1" />
+
+                                </Grid>
 
 
                         </Frame>
@@ -94,18 +111,20 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions >
                                     <RowDefinition Height="*" />
-                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="5" />
                                 </Grid.RowDefinitions>
 
 
-                                <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="UiPrivate.png" />
-                                <Entry Grid.Column="1" BackgroundColor="Transparent" TextColor="Black" Text="{Binding Password, Mode=TwoWay}" Placeholder="Password" IsPassword="True" PlaceholderColor="Gray" />
+                                <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="UiLoginLock.png" />
+                                <Entry Grid.Column="1" BackgroundColor="Transparent" x:Name="password" TextChanged="password_TextChanged"  TextColor="Black" Text="{Binding Password, Mode=TwoWay}" Placeholder="Password" IsPassword="True" PlaceholderColor="Gray" />
 
-                                <progressBar:SfLinearProgressBar Grid.Row="1" Grid.ColumnSpan="2" Progress="{Binding PasswordLevelBar}" x:Name="BarLevel" ValueChanged="BarLevel_ValueChanged" >
-                                    
-                                </progressBar:SfLinearProgressBar>
 
-                            </Grid>
+                                <BoxView Grid.Row="1" x:Name="BoxPassword" Grid.ColumnSpan="2" IsVisible="false" />
+                                    <progressBar:SfLinearProgressBar Grid.Row="1" x:Name="progressPassword" Grid.ColumnSpan="2" />
+
+
+
+                                </Grid>
 
 
                         </Frame> 
@@ -126,10 +145,10 @@
 
 
                                 <Image Aspect="AspectFit" BackgroundColor="Transparent" Source="UiPrivate.png" />
-                                <Entry Grid.Column="1" BackgroundColor="Transparent" TextColor="Black" Text="{Binding ConfirmPassword, Mode=TwoWay}" Placeholder="Confirm Password" IsPassword="True" PlaceholderColor="Gray" />
+                                <Entry Grid.Column="1" x:Name="confirmpassword" TextChanged="confirmpassword_TextChanged" BackgroundColor="Transparent" TextColor="Black" Text="{Binding ConfirmPassword, Mode=TwoWay}" Placeholder="Confirm Password" IsPassword="True" PlaceholderColor="Gray" />
 
 
-                                <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{Binding ConfirmColor}" />
+                                <BoxView Grid.Row="1" Grid.ColumnSpan="2" x:Name="BoxConfirmPassword" />
 
                             </Grid>
 
@@ -147,7 +166,7 @@
                         <Frame Padding="0" BackgroundColor="Blue" BorderColor="Transparent" >
 
 
-                            <Button TextColor="White" x:Name="submit" Clicked="submit_Clicked" Text="Submit" FontSize="23"  HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" FontAttributes="Bold" />
+                            <Button TextColor="White" x:Name="submit" Command="{Binding Signin}" Text="Submit" FontSize="23"  HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent" FontAttributes="Bold" />
 
 
 
@@ -158,6 +177,7 @@
 
 
                 </Grid>
+                </ScrollView>
 
             </Frame>
 

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace BetaLearnOne.Models
 {
    public class User
     {
-        public string ID { get; set; }
+
+       [PrimaryKey,AutoIncrement]
+        public int ID { get; set; }
         public string UserName { get; set; }
         public string UserSurname { get; set; }
         public string SchoolName { get; set; }

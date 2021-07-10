@@ -3,7 +3,8 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:BetaLearnOne.Views"
        xmlns:locals="clr-namespace:BetaLearnOne.Views.Projects"
-       xmlns:calendar="clr-namespace:BetaLearnOne.Views.Tools"
+       xmlns:exam="clr-namespace:BetaLearnOne.Views.ExamView"
+       xmlns:test="clr-namespace:BetaLearnOne.Views.TestView.ExamTestView"
        NavigationPage.HasNavigationBar="False"
        xmlns:localss="clr-namespace:BetaLearnOne.Views.Profile"
        Title="BetaLearnOne"
@@ -36,15 +37,16 @@
 
     <TabBar>
 
+        <ShellContent Title="Home" Route="TabbedPage" ContentTemplate="{DataTemplate local:TabbedViewPage}" />
+
+        <!--
+        <ShellContent Title="Test" Icon="XUIProfile.png" ContentTemplate="{DataTemplate test:ExamTestPage}" />
+     
+        <ShellContent Title="Projects" Route="MainProjectPage" Icon="XUIProfile.png" ContentTemplate="{DataTemplate locals:MainProjectPage}" />
         
-
-
-
-               <ShellContent Title="Projects" Route="MainProjectPage" Icon="XUIProfile.png" ContentTemplate="{DataTemplate locals:MainProjectPage}" />
-       
-       
         <ShellContent Title="Learn" Icon="XUIProjects.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
         <ShellContent Title="Profile" Icon="UiappsTab.png" Route="Profile" ContentTemplate="{DataTemplate localss:ProfilePage}" />
+        -->
     </TabBar>
 
     <!--

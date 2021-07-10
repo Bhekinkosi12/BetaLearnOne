@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:popup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms" HeightRequest="400" 
+              xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" BackgroundColor="#eeefff"
+             xmlns:rg="http://rotorgames.com" Shell.NavBarIsVisible="False" 
+             x:Class="BetaLearnOne.Views.Popups.HomePopup">
+
+    <rg:PopupPage.Resources>
+        <ResourceDictionary >
+            <Style TargetType="punny:PancakeView" x:Key="punnystyle" >
+                <Setter Property="Margin" Value="15,0,15,0" />
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="BackgroundColor" Value="#cccccc" />
+
+
+            </Style>
+        </ResourceDictionary>
+    </rg:PopupPage.Resources>
+
+    
+
+    <rg:PopupPage.Content>
+        <Frame Padding="0" BackgroundColor="white" Margin="20,200" CornerRadius="20" >
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Frame Padding="0" BackgroundColor="Transparent" >
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Home" FontSize="35" FontAttributes="Bold" TextColor="Blue" HorizontalOptions="Center" />
+                    
+                    </Grid>
+                    
+                </Frame>
+                
+                
+            <StackLayout Spacing="20" Grid.Row="1"> 
+            
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+
+                    <punny:PancakeView Style="{StaticResource punnystyle}"  Grid.ColumnSpan="2" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1">
+                            <punny:PancakeView.Shadow>
+                                <punny:DropShadow BlurRadius="4" Color="#191919"  />
+                            </punny:PancakeView.Shadow>
+
+                        <Grid Padding="10" >
+                            <Grid.GestureRecognizers >
+                                <TapGestureRecognizer x:Name="home" Tapped="home_Tapped" />
+                            </Grid.GestureRecognizers>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="UiCollige.png" Aspect="AspectFit" />
+
+                            <Label Text="Profile" TextColor="#191919" HorizontalOptions="Center" VerticalOptions="Center" FontSize="18" Grid.Column="1" />
+
+
+                        </Grid>
+
+
+                    </punny:PancakeView>
+
+
+
+                    <punny:PancakeView Style="{StaticResource punnystyle}" Grid.Column="1" Grid.Row="1" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1">
+                            <punny:PancakeView.Shadow>
+                                <punny:DropShadow BlurRadius="4" Color="#191919"  />
+                            </punny:PancakeView.Shadow>
+
+
+                            <Grid Padding="10">
+                            <Grid.GestureRecognizers >
+                                <TapGestureRecognizer x:Name="calculator" Tapped="calculator_Tapped"  NumberOfTapsRequired="1"/>
+                            </Grid.GestureRecognizers>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60" />
+                                <RowDefinition Height="23" />
+                            </Grid.RowDefinitions>
+
+                            <Image Source="Uiestimate.png" Aspect="AspectFit" />
+
+                            <Label Text="Calculator" TextColor="#191919" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" Grid.Row="1" />
+
+
+                        </Grid>
+
+
+                    </punny:PancakeView>
+
+
+                    <punny:PancakeView Style="{StaticResource punnystyle}" Grid.Row="1" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="1,1">
+
+                            <punny:PancakeView.Shadow>
+                                <punny:DropShadow BlurRadius="4" Color="#191919"  />
+                            </punny:PancakeView.Shadow>
+
+                            <Grid >
+                            <Grid.GestureRecognizers >
+                                <TapGestureRecognizer x:Name="calendar" Tapped="calendar_Tapped" />
+                            </Grid.GestureRecognizers>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="23" />
+                                </Grid.RowDefinitions>
+
+                                <Image Source="UiPlanner.png" Aspect="AspectFit" />
+
+                            <Label Text="Calendar" TextColor="#191919" HorizontalOptions="Center" VerticalOptions="Center" FontSize="17" Grid.Row="1" />
+
+                        </Grid>
+
+
+                    </punny:PancakeView>
+                </Grid>
+
+
+
+
+
+
+            </StackLayout>
+            </Grid>
+        </Frame>
+    </rg:PopupPage.Content>
+
+
+    
+        
+    
+  
+
+    
+    
+</rg:PopupPage>

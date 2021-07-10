@@ -5,17 +5,23 @@ using BetaLearnOne.Models.ProjectModel;
 using BetaLearnOne.Services;
 using Xamarin.Forms;
 using System.Linq;
+using BetaLearnOne.Services.ProjectServices;
+using System.Threading.Tasks;
 
 namespace BetaLearnOne.Services
 {
    public class ProjectData
     {
+        ProjectBaseStore BaseStore = new ProjectBaseStore();
         private List<ProjectM> ProjectItems { get; set; }
-
+      
+        
 
         public ProjectData()
         {
             ProjectDataAcess();
+           // BaseStore.AddAllItemsAsync(ProjectItems);
+           // BaseStore.AddAllItems(ProjectItems);
         }
 
 
@@ -26,26 +32,70 @@ namespace BetaLearnOne.Services
             {
                 new ProjectM
                 {
-                    ID = Guid.NewGuid().ToString(),
+                    Id = 1,
                     Subject = Subjects.Mathametics,
                     ProjectName = "Example",
                     ProjectDescription = "A brief Explaination of how a projects item is previewed",
                     ImagePreview = "MathFive.png",
                     DueDate = DateTime.Now,
                     StartDate = DateTime.Today,
-                    ProjectColor = "Red"
+                    ProjectColor = "Red",
+                    Data = new List<ProjectDataM>()
+                    {
+                       new ProjectDataM
+                       {
+                           ID = 1,
+                           Description = "You can add new steps here",
+                            Hint = "It works better if you try it"
+                       },
+                        new ProjectDataM
+                       {
+                           ID = 1,
+                           Description = "You can add new steps here",
+                            Hint = "It works better if you try it"
+                       },
+                        new ProjectDataM
+                       {
+                           ID = 1,
+                           Description = "You can add new steps here",
+                            Hint = "It works better if you try it"
+                       }
+                    },
+                    Notes = "We are proud to manifest the tradition of making something posible and giving back to the community making people smile is our goal"
 
                 },
                 new ProjectM
                 {
-                    ID = Guid.NewGuid().ToString(),
+                    Id = 2,
                     Subject = Subjects.PhysicalSciences,
                     ProjectName = "Example",
                     ProjectDescription = "A brief Explaination of how a projects item is previewed",
                     ImagePreview = "MathSeven.png",
                     DueDate = DateTime.Now,
                     StartDate = DateTime.Today,
-                    ProjectColor = "Blue"
+                    ProjectColor = "Blue",
+                     Data = new List<ProjectDataM>()
+                    {
+                       new ProjectDataM
+                       {
+                           ID = 1,
+                           Description = "You can add new steps here",
+                            Hint = "It works better if you try it"
+                       },
+                       new ProjectDataM
+                       {
+                           ID = 1,
+                           Description = "You can add new steps here",
+                            Hint = "It works better if you try it"
+                       },
+                       new ProjectDataM
+                       {
+                           ID = 1,
+                           Description = "You can add new steps here",
+                            Hint = "It works better if you try it"
+                       }
+                    },
+                       Notes = "We are proud to manifest the tradition of making something posible and giving back to the community making people smile is our goal"
 
                 }
 
@@ -55,15 +105,85 @@ namespace BetaLearnOne.Services
 
 
 
-
-
-        public List<ProjectM> GetProjects()
+        public void AddNote(int ProjectId,ProjectDataM itemToAdd)
         {
-            List<ProjectM> projects = new List<ProjectM>();
+            var i = ProjectItems.FirstOrDefault(x => x.Id == ProjectId).Data;
+            i.Add(itemToAdd);
 
-            projects = ProjectItems;
+        }
+        public List<ProjectDataM> GetNoteData(int ProjectId)
+        {
+            return ProjectItems.FirstOrDefault(x => x.Id == ProjectId).Data;
+        }
+        public ProjectDataM GetNote(int ProjectID,int NoteId)
+        {
+            return ProjectItems.FirstOrDefault(x => x.Id == ProjectID).Data.FirstOrDefault(i => i.ID == NoteId);
+        }
+        public void UpdateNote(int ProjectID,int NoteId, ProjectDataM NewItem)
+        {
+          var item =  ProjectItems.FirstOrDefault(x => x.Id == ProjectID).Data.FirstOrDefault(i => i.ID == NoteId);
+            item = NewItem;
 
-            return projects;
+        }
+        public void RemoveNoteItem(int ProjectId, ProjectDataM item)
+        {
+           var list = ProjectItems.FirstOrDefault(x => x.Id == ProjectId).Data;
+            list.Remove(item);
+
+        }
+
+
+
+
+
+        public List<ProjectM> ReturningProjects()
+        {
+            return ProjectItems;
+
+        }
+        public void AddingItem(ProjectM item)
+        {
+            ProjectItems.Add(item);
+
+
+        }
+        public void RemovingItem(ProjectM itemToDelete)
+        {
+            ProjectItems.Remove(itemToDelete);
+        }
+        public ProjectM ReturningItemById(int id)
+        {
+          return ProjectItems.FirstOrDefault(x => x.Id == id);
+
+        }
+       public void UpdatingItemNote(string note,int projectIndex)
+        {
+           var item = ProjectItems.FirstOrDefault(x => x.Id == projectIndex);
+            item.Notes = note;
+
+        }
+        public void UpdateItemDescription(string description, int projectIndex)
+        {
+            var item = ProjectItems.FirstOrDefault(x => x.Id == projectIndex);
+            item.ProjectDescription = description;
+        }
+
+
+
+
+
+        public async Task<List<ProjectM>> GetProjects()
+        {
+           
+
+
+
+
+
+
+           return await BaseStore.GetDataAsync();
+
+            
            
 
         }
@@ -71,14 +191,8 @@ namespace BetaLearnOne.Services
         {
             try
             {
-
-            List<ProjectM> ProjectTemplate = new List<ProjectM>();
-
-            ProjectTemplate = ProjectItems;
-            ProjectItems.Clear();
-            
-            ProjectTemplate.Add(item);
-            ProjectItems = ProjectTemplate;
+                BaseStore.AddItemAsync(item);
+          
             }
             catch
             {
@@ -93,17 +207,7 @@ namespace BetaLearnOne.Services
 
             try
             {
-                List<ProjectM> ProjectTemplate = new List<ProjectM>();
-
-                ProjectTemplate = ProjectItems;
-                ProjectItems.Clear();
-
-               int index = ProjectTemplate.IndexOf(item);
-
-                ProjectTemplate.RemoveAt(index);
-
-
-                ProjectItems = ProjectTemplate;
+                BaseStore.RemoveItemAsync(item.Id);
 
 
             }
@@ -114,11 +218,9 @@ namespace BetaLearnOne.Services
 
         }
 
-        public ProjectM GetItemByID(string ID)
-        {
-           return ProjectItems.Where(x => x.ID == ID).FirstOrDefault();
-
-        }
+      
+        
+        
 
 
     }

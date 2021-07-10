@@ -3,6 +3,7 @@ using BetaLearnOne.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BetaLearnOne.Services.AuthenticationServices;
 
 namespace BetaLearnOne
 {
@@ -15,6 +16,7 @@ namespace BetaLearnOne
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<UserData>();
+            DependencyService.Register<BaseUserStore>();
             MainPage = new AppShell();
         }
 

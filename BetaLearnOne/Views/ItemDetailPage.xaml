@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BetaLearnOne.Views.ItemDetailPage"
              Shell.NavBarIsVisible="False" Shell.TabBarIsVisible="False"
+             xmlns:anima="clr-namespace:Xamanimation;assembly=Xamanimation"
              xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:model="clr-namespace:BetaLearnOne.Models.ExamModel"
              xmlns:punny="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -94,8 +95,13 @@
 
             </Setter>
 
+            
+            
 
         </Style>
+
+       
+        
     </ContentPage.Resources>
 
 
@@ -122,7 +128,6 @@
 
 
 
-      
 
 
 
@@ -130,41 +135,30 @@
 
 
 
-        <CarouselView ItemsSource="{Binding ListTopics}"  CurrentItem="{Binding CurrentItem}"   BackgroundColor="Transparent"   Grid.Row="1" IsScrollAnimated="True" Margin="10"  IsBounceEnabled="True"  >
+
+
+
+
+        <CarouselView ItemsSource="{Binding ListTopics}" Position="{Binding Position}" x:Name="PaperFrame" CurrentItem="{Binding CurrentItem}"   BackgroundColor="Transparent"   Grid.Row="1" IsScrollAnimated="True" Margin="10"  IsBounceEnabled="True"  >
+          
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         
                         <Frame Padding="0"   BackgroundColor="Transparent" x:DataType="model:Paper" BorderColor="Transparent" >
                             
                             
-                            <Grid  HeightRequest="120" x:DataType="model:Topic" >
-                                <Grid.RowDefinitions >
-                                <RowDefinition Height="50" />
-                                <RowDefinition Height="*" />
-                                    <RowDefinition Height="40" />
+                            <Grid  HeightRequest="120" x:DataType="model:Paper" >
+                                  <Grid.RowDefinitions >
                                 
+                                        <RowDefinition Height="*" />
+                    
+                                 </Grid.RowDefinitions>
 
 
+                            <Image Source="PaperBackground.png" Aspect="AspectFit"  />
 
 
-                            </Grid.RowDefinitions>
-
-                            <Frame Padding="0" BackgroundColor="Transparent">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-
-
-                                    <BoxView BackgroundColor="White" Opacity="0.6" />
-                                    <Label Text="{Binding PaperName}" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" FontSize="26" />
-
-                                </Grid>
-                            </Frame>
-                                
-
-
-                                <Frame Padding="0" BackgroundColor="Transparent" CornerRadius="10" Grid.Row="1" >
+                            <Frame Padding="0" BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" CornerRadius="10"  >
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -174,10 +168,10 @@
 
 
 
-                                    <punny:PancakeView Margin="13,27,13,5" CornerRadius="18,18,18,0" BackgroundColor="#b3cde0"  >
+                                    <punny:PancakeView Margin="25,27,13,20"  BackgroundColor="Transparent"  >
 
 
-                                        <Label Text="{Binding PaperName}" Margin="10"  TextColor="Black" FontSize="19"   />
+                                        <Label Text="{Binding PaperName}" Margin="10"  TextColor="Black" FontSize="21"   />
                                    
                                     </punny:PancakeView>
 

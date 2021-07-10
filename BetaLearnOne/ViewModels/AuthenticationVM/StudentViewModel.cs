@@ -6,6 +6,7 @@ using BetaLearnOne.Services;
 using BetaLearnOne.Models;
 using BetaLearnOne.Views.LearnView;
 using BetaLearnOne.Views.Profile;
+using BetaLearnOne.Services.AuthenticationServices;
 
 namespace BetaLearnOne.ViewModels.AuthenticationVM
 {
@@ -21,11 +22,12 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
 
 
        private UserData data = new UserData();
+        IUserData store = new BaseUserStore(); 
         public Command Login { get; }
 
         public StudentViewModel()
         {
-            Login = new Command(OnLogin);
+            Login = new Command(OnLoginN);
         }
 
 
@@ -108,6 +110,7 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
         {
             bool condition = data.StudentUserData(Email, Password);
 
+
             if(condition == true)
             {
                 return true;
@@ -120,14 +123,21 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
         }
 
 
+
+        
+
+
         async void OnLogin()
         {
 
             bool condition = data.StudentUserData(Email, Password);
 
+
+
+
             if(condition == true)
             {
-               await Shell.Current.GoToAsync($"{nameof(ProfilePage)}");
+               await Shell.Current.GoToAsync($"{nameof(TabbedPage)}");
             }
             else
             {
@@ -150,6 +160,19 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
             }
             */
             
+        }
+
+        async void OnLoginN()
+        {
+            if(store.ReturnUser(Email,Password))
+            {
+                await Shell.Current.GoToAsync($"{nameof(TabbedPage)}");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", "Email or Password is incorrect", "OK");
+            }
+
         }
 
 

@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using BetaLearnOne.Services;
+using SQLite;
+
 
 namespace BetaLearnOne.Models.ProjectModel
 {
    public class ProjectM
     {
-        public string ID { get; set; }
+        [PrimaryKey,AutoIncrement]
+        public int Id { get; set; }
+        
         public Subjects Subject { get; set; }
         public string ProjectName { get; set; }
         public string ProjectDescription { get; set; }
@@ -15,6 +19,8 @@ namespace BetaLearnOne.Models.ProjectModel
         public DateTime DueDate { get; set; }
         public string ImagePreview { get; set; }
         public string ProjectColor { get; set; }
+        public string Notes { get; set; }
+        public List<ProjectDataM> Data { get; set; }
         
 
 

@@ -11,19 +11,20 @@ using System.IO;
 using Xamarin.Forms;
 using BetaLearnOne.Views.Popups;
 using BetaLearnOne.Views.Projects;
+using BetaLearnOne.Services.AuthenticationServices;
 
 namespace BetaLearnOne.ViewModels.ProfileVM
 {
    public class ProfileViewModel : BaseViewModel
     {
-        private string profilePicture;
+        
         private string userName;
         private int level;
         private int points;
         private string bio;
         private string bioEdit;
         private int profileStrenght;
-        private ObservableCollection<User> rewards;
+       
         public Command Edit { get; }
         public Command Projects { get; }
         public Command SaveEdit { get; }
@@ -101,13 +102,14 @@ namespace BetaLearnOne.ViewModels.ProfileVM
             {
 
 
-                var dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Memory.db");
-                var data = new SQLiteConnection(dataPath);
+              //  var dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Memory.db");
+              //  var data = new SQLiteConnection(dataPath);
 
-                var table = data.Table<User>().FirstOrDefault();
+                IUserData localD = new BaseUserStore();
+                var table = localD.ReturenLocalDB();
+              //  var table = data.Table<User>().FirstOrDefault();
 
-                if (table == null)
-                    return;
+                
 
                 UserName = table.UserName;
                 Level = Getlevel(table.Points);

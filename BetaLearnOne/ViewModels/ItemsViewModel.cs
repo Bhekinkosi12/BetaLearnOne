@@ -9,6 +9,8 @@ using SQLite;
 using System.IO;
 using BetaLearnOne.Views.LearnView;
 using BetaLearnOne.ViewModels.DocumentVM;
+using BetaLearnOne.ViewModels.ExamVM;
+using BetaLearnOne.Views.ExamView;
 
 namespace BetaLearnOne.ViewModels
 {
@@ -21,7 +23,7 @@ namespace BetaLearnOne.ViewModels
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
 
-        public ItemsViewModel()
+      public ItemsViewModel()
         {
           
             Title = "Browse";
@@ -32,12 +34,16 @@ namespace BetaLearnOne.ViewModels
 
             AddItemCommand = new Command(OnAddItem);
 
-
+            losd();
 
 
 
         }
 
+        async void losd()
+        {
+            await ExecuteLoadItemsCommand();
+        }
 
         private async void loginCheck()
         {
@@ -83,6 +89,8 @@ namespace BetaLearnOne.ViewModels
         {
             IsBusy = true;
             SelectedItem = null;
+            
+
         }
 
         public Item SelectedItem
@@ -106,8 +114,9 @@ namespace BetaLearnOne.ViewModels
                 return;
 
             // This will push the ItemDetailPage onto the navigation stack
-            //  await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+           //   await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
             await Shell.Current.GoToAsync($"{nameof(PDFLearningPage)}?{nameof(DocumentViewModel.ItemId)}={item.Id}");
+           // await Shell.Current.GoToAsync($"{nameof(ExamPage)}?{nameof(ExamViewModel.ItemId)}={item.Id}");
         }
     }
 }

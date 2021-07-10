@@ -7,15 +7,17 @@ using BetaLearnOne.Models;
 using System.Threading.Tasks;
 using System.IO;
 using Xamarin.Forms;
+using BetaLearnOne.Services.AuthenticationServices;
 
 namespace BetaLearnOne.Services
 {
-   public class UserData : IDataStore<User>
+   public class UserData 
     {
        readonly List<User> Students;
        readonly List<User> Staff;
         private string StudentDataFile = "StudentDataBase.db";
         private string StaffDataFile = "StaffDataFile.db";
+        IUserData store = new BaseUserStore();
 
 
 
@@ -133,7 +135,7 @@ namespace BetaLearnOne.Services
             {
                  new User
                  {
-                     ID = Guid.NewGuid().ToString(),
+                     
                      UserName = "Ndumiso",
                      UserSurname = "Kubheka",
                      SchoolName = "Thistle Grove",
@@ -161,7 +163,7 @@ namespace BetaLearnOne.Services
                 new User
                 {
                      StaffNumber = "admin",
-                     ID = Guid.NewGuid().ToString(),
+                     
                      Email = "ThistleGrove@gmail.com",
                      SchoolName = "Thistle Grove",
                      IsStaff = true,
@@ -174,14 +176,37 @@ namespace BetaLearnOne.Services
                 }
 
             };
-
-
+            store.AddAll(Students);
+            store.AddAll(Staff);
+            
             DataBase(StudentDataFile, Students);
             DataBase(StaffDataFile, Staff);
 
         }
 
 
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
+
+        /*********************
+         * 
+         *  Old Data Handler
+         * 
+
+
+        */
 
         public void AddPerson(User user)
         {
@@ -196,6 +221,9 @@ namespace BetaLearnOne.Services
                  Students.Add(user);
                 DataBase(StaffDataFile, Staff);
             }
+
+
+
 
         }
 
@@ -233,7 +261,7 @@ namespace BetaLearnOne.Services
             {
                 Email = "admin",
                 PassWord = "admin",
-                ID = "admin",
+                
 
             };
 
@@ -257,7 +285,7 @@ namespace BetaLearnOne.Services
             {
                  Email = "admin",
                  PassWord = "admin",
-                 ID = "admin",
+                 
                  
             };
 
@@ -315,6 +343,7 @@ namespace BetaLearnOne.Services
 
         }
 
+        /*
 
         public async Task<bool> AddItemAsync(User item)
         {
@@ -356,5 +385,8 @@ namespace BetaLearnOne.Services
         {
             return await Task.FromResult(Students.FirstOrDefault(s => s.Email == email && s.PassWord == password));
         }
+
+
+        */
     }
 }

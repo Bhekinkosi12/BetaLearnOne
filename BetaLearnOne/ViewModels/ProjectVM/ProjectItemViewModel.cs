@@ -5,10 +5,13 @@ using BetaLearnOne.Models.ProjectModel;
 using BetaLearnOne.Services;
 using Xamarin.Forms;
 using BetaLearnOne.Views.Tools;
+using BetaLearnOne.Services.ProjectServices;
+using System.Collections.ObjectModel;
+using BetaLearnOne.Views.Projects;
 
 namespace BetaLearnOne.ViewModels.ProjectVM
 {
-    [QueryProperty(nameof(ID),nameof(ID))]
+    [QueryProperty(nameof(ItemId),nameof(ItemId))]
     public class ProjectItemViewModel : BaseViewModel
     {
         private Subjects subject;
@@ -19,14 +22,63 @@ namespace BetaLearnOne.ViewModels.ProjectVM
         private string imagePreview;
         private string projectColor;
         private string id;
-         
-        ProjectData projectData = new ProjectData();
+        private string itemId;
+        private string itemNote;
+        private string previous;
+        private ProjectDataM selectedItem;
+
+        private ObservableCollection<ProjectDataM> notes;
+        ProjectBaseStore BaseStore = new ProjectBaseStore();
+       ProjectData projectData = new ProjectData();
+        NoteEditViewModel note = new NoteEditViewModel();
         public Command Calendar { get; }
+        public Command Save { get; }
+        public Command Cancel { get; }
+        public Command Edit { get; }
+        public Command<ProjectDataM> NoteClicked { get; set; }
 
  
         public ProjectItemViewModel()
         {
             Calendar = new Command(OnCalendar);
+            NoteClicked = new Command<ProjectDataM>(OnNoteClick);
+            Save = new Command(OnSave);
+            Cancel = new Command(OnDelete);
+            Edit = new Command(OnEdit);
+        }
+
+        
+    
+        public ProjectDataM SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                SetProperty(ref selectedItem, value);
+                OnNoteClick(value);
+                OnPropertyChanged(nameof(SelectedItem));
+            }
+        }
+
+        public string ItemNote
+        {
+            get => itemNote;
+            set
+            {
+                SetProperty(ref itemNote, value);
+                OnPropertyChanged(nameof(ItemNote));
+            }
+        }
+
+        public string ItemId
+        {
+            get => itemId;
+            set
+            {
+                SetProperty(ref itemId, value);
+                GetItems(value);
+                OnPropertyChanged(nameof(ItemId));
+            }
         }
 
         public string ID
@@ -35,10 +87,21 @@ namespace BetaLearnOne.ViewModels.ProjectVM
             set
             {
                 SetProperty(ref id, value);
-                GetItems(value);
+               
                 OnPropertyChanged(nameof(ID));
             }
         }
+
+        public ObservableCollection<ProjectDataM> Notes
+        {
+            get => notes;
+            set
+            {
+                SetProperty(ref notes, value);
+                OnPropertyChanged(nameof(Notes));
+            }
+        }
+
         public Subjects Subject
         {
             get => subject;
@@ -109,11 +172,16 @@ namespace BetaLearnOne.ViewModels.ProjectVM
 
 
 
+
+
        async private void GetItems(string id)
         {
             try
             {
-                var item = projectData.GetItemByID(id);
+
+                ObservableCollection<ProjectDataM> list = new ObservableCollection<ProjectDataM>();
+                var item = projectData.ReturningItemById(Int32.Parse(id));
+              //  var item = await BaseStore.GetItemByIdAsync(Int32.Parse(id));
                 
                 Subject = item.Subject;
                 ProjectName = item.ProjectName;
@@ -122,7 +190,16 @@ namespace BetaLearnOne.ViewModels.ProjectVM
                 DueDate = item.DueDate;
                 ImagePreview = item.ImagePreview;
                 ProjectColor = item.ProjectColor;
+                ItemNote = item.Notes;
                 IsAdmin = false;
+
+                foreach(var i in projectData.GetNoteData(item.Id))
+                {
+                    list.Add(i);
+                    
+                }
+                Notes = list;
+                
 
             }
             catch (Exception ex)
@@ -141,6 +218,42 @@ namespace BetaLearnOne.ViewModels.ProjectVM
         {
 
             await Shell.Current.GoToAsync(nameof(CalenderPage));
+        }
+
+
+        void OnSave()
+        {
+            projectData.UpdatingItemNote(ItemNote, Int32.Parse(ItemId));
+            projectData.UpdateItemDescription(ProjectDescription, Int32.Parse(ItemId));
+        }
+        void OnEdit()
+        {
+            previous = ItemNote;
+        }
+        void OnDelete()
+        {
+            ItemNote = previous;
+        }
+
+
+       private async void OnNoteClick(ProjectDataM item)
+        {
+            try
+            {
+
+           
+            note.SettingProjectID(Int32.Parse(ItemId));
+              //  NoteEditViewModel notes = new NoteEditViewModel();
+              //  notes.ID = item.ID.ToString();
+               // await Shell.Current.GoToAsync(nameof(NoteEditPage));
+           await Shell.Current.GoToAsync($"{nameof(NoteEditPage)}?{nameof(NoteEditViewModel.ID)}={item.ID}");
+            }
+            catch(Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+            }
+
+
         }
 
 

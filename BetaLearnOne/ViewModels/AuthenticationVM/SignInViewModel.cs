@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using BetaLearnOne.Services;
 using BetaLearnOne.Models;
 using BetaLearnOne.Views.Profile;
+using BetaLearnOne.Services.AuthenticationServices;
 
 namespace BetaLearnOne.ViewModels.AuthenticationVM
 {
@@ -14,9 +15,7 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
         private string email;
         private string password;
         private string confirmPassword;
-        private int passwordLevelBar;
-        private string confirmColor = "Red";
-        private int accesslevel = 0;
+        
 
         UserData userdata = new UserData();
 
@@ -56,10 +55,10 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
             get => password;
             set
             {
-                verifyPasswordLevel(Password);
-                PasswordLevelBar = accesslevel;
+              
                 SetProperty(ref password, value);
                 OnPropertyChanged(nameof(password));
+               
             }
         }
 
@@ -69,38 +68,33 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
             set
             {
                 SetProperty(ref confirmPassword, value);
-                passwordSame(value);
+
                 OnPropertyChanged(nameof(ConfirmPassword));
             }
         }
 
-        public int PasswordLevelBar
-        {
-            get => passwordLevelBar;
-            set
-            {
-                SetProperty(ref passwordLevelBar, value);
-                OnPropertyChanged(nameof(PasswordLevelBar));
-            }
-        }
 
-        public string ConfirmColor
-        {
-            get => confirmColor;
-            set
-            {
-                 
-                SetProperty(ref confirmColor, value);
-                OnPropertyChanged(nameof(ConfirmColor));
-            }
-        } 
-
+   
 
         private bool VerifyInput()
         {
-            if(!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email))
+
+
+
+            if(!string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password))
             {
-                return true;
+                int isEmail = Email.IndexOf('@');
+                int Long = Password.Length;
+
+                if(isEmail != -1 && Long >= 7)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
             else
             {
@@ -108,122 +102,12 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
             }
         }
 
-        private void verifyPasswordLevel(string password)
-        {
+     
+
+    
 
 
-            int level = 0;
-            if(password.Length >= 8)
-            {
-                level += 50;
-            }
-            else
-            {
-                level += 0;
-            }
-
-
-
-            List<int> numbers = new List<int>()
-            {
-               1,2,3,4,5,6,7,8,9,0
-            };
-            List<string> characters = new List<string>()
-            {
-                "!","@","#","$","%","^","&","*","+","=","-","`"
-            };
-
-
-
-            List<bool> ConditionOne = new List<bool>();
-            List<bool> ConditionTwo = new List<bool>();
-
-
-
-
-
-            foreach(var num in numbers)
-            {
-                if (password.IndexOf($"{num}") != -1)
-                {
-                    ConditionOne.Add(true);
-
-                }
-                else
-                {
-                    ConditionOne.Add(false);
-                }
-            }
-
-            foreach(string cha in characters)
-            {
-                if(password.IndexOf(cha) != -1)
-                {
-                    ConditionTwo.Add(true);
-                }
-                else
-                {
-                    ConditionTwo.Add(false);
-                }
-
-            }
-
-            if(ConditionOne.IndexOf(true) != -1)
-            {
-                level += 25;
-            }
-            else
-            {
-
-                level += 0;
-            }
-            if (ConditionTwo.IndexOf(true) != -1)
-            {
-                level += 25;
-            }
-            else
-            {
-
-                level += 0;
-            }
-
-
-            accesslevel = level;
-
-
-
-
-
-        }
-
-        private string passwordSame()
-        {
-            if (ConfirmPassword == Password)
-            {
-                return "Green";
-
-            }
-            else
-            {
-                return  "Red";
-            }
-
-        }
-
-
-        private void passwordSame(string password)
-        {
-            if(password == Password)
-            {
-                ConfirmColor = "Green";
-
-            }
-            else
-            {
-                ConfirmColor = "Red";
-            }
-
-        }
+ 
 
 
         public bool Verified()
@@ -242,28 +126,45 @@ namespace BetaLearnOne.ViewModels.AuthenticationVM
 
        async void OnSignIn()
         {
-            verifyPasswordLevel(Password);
+            try
+            {
+
             if (VerifyInput())
             {
-                var item = new User()
+                try
                 {
-                    Email = Email,
-                    UserName = Name,
-                    PassWord = Password,
-                    Bio = "Edit your Bio!!",
-                    ID = Guid.NewGuid().ToString(),
-                    IsStaff = false
-                };
+                    IUserData basedata = new BaseUserStore();
+                    var item = new User()
+                    {
+                        Email = Email,
+                        UserName = Name,
+                        PassWord = Password,
+                        Bio = "Edit your Bio!!",
 
-                userdata.AddPerson(item);
-                await Shell.Current.GoToAsync($"//{nameof(ProfilePage)}");
+                        IsStaff = false
+                    };
+                    basedata.AddUser(item);
+
+                    await Shell.Current.GoToAsync($"//{nameof(TabbedPage)}");
 
 
+                }
+                catch (Exception ex)
+                {
+                    await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
+                }
+                
 
             }
             else
             {
-                await Shell.Current.DisplayAlert("Alert", "Please Check your Input and try again", "OK");
+                await Shell.Current.DisplayAlert("Alert", "Please level all indicators to green", "OK");
+            }
+
+
+            } catch(Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }
 
         }

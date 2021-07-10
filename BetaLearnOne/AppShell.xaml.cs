@@ -36,6 +36,11 @@ namespace BetaLearnOne
             Routing.RegisterRoute(nameof(SetDatePopup), typeof(SetDatePopup));
             Routing.RegisterRoute(nameof(CalenderPage), typeof(CalenderPage));
             Routing.RegisterRoute(nameof(ExamPage), typeof(ExamPage));
+            Routing.RegisterRoute(nameof(NoteEditPage), typeof(NoteEditPage));
+            Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
+            Routing.RegisterRoute(nameof(TabbedPage), typeof(TabbedPage));
+            Routing.RegisterRoute(nameof(HomePopup), typeof(HomePopup));
+            Routing.RegisterRoute(nameof(MenuPopup), typeof(MenuPopup));
 
         }
 

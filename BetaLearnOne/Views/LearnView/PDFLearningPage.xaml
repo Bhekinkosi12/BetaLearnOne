@@ -62,7 +62,7 @@
                     
                     
                     
-                    <Frame BackgroundColor="Blue" Padding="0" CornerRadius="60" Grid.Column="1" WidthRequest="50" HeightRequest="60" Margin="0,0,40,15" >
+                    <Frame BackgroundColor="Blue" Padding="0" CornerRadius="60" Grid.Column="1" WidthRequest="50" HeightRequest="60" Margin="0,0,60,15" >
                         <Button Text="+" x:Name="ToolBTN" Clicked="ToolBTN_Clicked" BackgroundColor="Transparent" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" />
 
                     </Frame>

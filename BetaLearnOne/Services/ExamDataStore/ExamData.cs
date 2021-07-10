@@ -6,13 +6,17 @@ using System.Linq;
 using Xamarin.Forms;
 using System.IO;
 using SQLite;
+using System.Threading.Tasks;
 
 namespace BetaLearnOne.Services.ExamDataStore
 {
    public class ExamData
     {
-        private string FileData = "ExamData";
-       public List<Paper> MathExamPapers;
+        private string FileData = "ExamData.db";
+
+
+        public List<Paper> MathExamPapers;
+        public Dictionary<string, string[]> KeyedData = new Dictionary<string, string[]>();
 
         public ExamData()
         {
@@ -20,7 +24,7 @@ namespace BetaLearnOne.Services.ExamDataStore
 
         }
 
-
+         
 
         private void ExamPaperData()
         {
@@ -39,20 +43,40 @@ namespace BetaLearnOne.Services.ExamDataStore
                      new Paper
                 {
                     ID = Guid.NewGuid().ToString(),
-                    QuestionPaper = "Math2014P1.pdf",
-                    QuestionMemo = "Math2014P1Memo.pdf",
-                    PaperName = "Mathemetics 2014 Paper 1",
-                    PaperPath = "BetaLearnOne.Asserts.MathQP.Math2014P1.pdf",
-                    MemoPath = "BetaLearnOne.Asserts.MathQP.Math2014P1Memo.pdf"
+                    QuestionPaper = "Math2014P2.pdf",
+                    QuestionMemo = "Math2014P2Memo.pdf",
+                    PaperName = "Mathemetics 2014 Paper 2",
+                    PaperPath = "BetaLearnOne.Asserts.MathQP.Math2014P2.pdf",
+                    MemoPath = "BetaLearnOne.Asserts.MathQP.Math2014P2Memo.pdf"
                 }
 
 
             };
 
+
             DataBase(FileData, MathExamPapers);
+
+
+
+            foreach(var i in MathExamPapers )
+            {
+                string[] s = { i.PaperPath, i.MemoPath };
+                AddDictionary(i.ID, s);   
+            }
+
+
 
         }
 
+        public Paper ItemByIndex(string positions)
+        {
+         
+
+                return MathExamPapers[Int32.Parse(positions)];
+          
+ 
+
+        }
 
         public List<Paper> PaperData()
         {
@@ -72,7 +96,27 @@ namespace BetaLearnOne.Services.ExamDataStore
 
         }
 
+        public Paper GetItemById(string id)
+        {
+           return MathExamPapers.FirstOrDefault(x => x.ID == id);
 
+        }
+        public async Task<Paper> GetItemAsync(string id)
+        {
+            return await Task.FromResult(MathExamPapers.FirstOrDefault(s => s.ID == id));
+        }
+
+
+
+        void AddDictionary(string id, string[] table)
+        {
+            KeyedData.Add(id, table);
+        }
+        public string[] ItemFromDictionary(string id)
+        {
+           return KeyedData[id];
+
+        }
 
 
 
